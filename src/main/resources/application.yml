@@ -1,0 +1,43 @@
+# set active profile:
+spring:
+  profiles.active: default
+---
+
+# config default profile:
+spring:
+  profiles: default
+
+  mvc.favicon:
+    enabled: false
+
+  datasource:
+    url: jdbc:h2:~/.blog/db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+
+  jpa:
+    show: true
+    generate-ddl: true
+    hibernate.ddl-auto: create
+
+  data.rest:
+    base-uri: api
+
+security:
+  basic:
+    enabled: false
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/json
+---
+
+# config test profile:
+spring:
+  profiles: test
+
+  datasource:
+    url: jdbc:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+
+server:
+  address: localhost

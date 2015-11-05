@@ -1,6 +1,8 @@
 .gradle/
 .idea/
+node_modules/
 build/
-*.iml
-
 out
+.DS_Store
+*.iml
+*.log

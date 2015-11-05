@@ -26,6 +26,5 @@ public class UserRepositoryTest extends SpringTest {
 
         User res = repository.findOne(1L);
         assertNotNull(res.username);
-        System.out.println(res);
     }
 }

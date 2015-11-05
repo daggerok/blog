@@ -1,0 +1,24 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Blog",
+  "main": "blog.js",
+  "scripts": {
+    "gulp": "gulp",
+    "test": "echo hi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/daggerok/blog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Maksim Kostromin",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/daggerok/blog#readme",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "rimraf": "^2.4.3"
+  }
+}

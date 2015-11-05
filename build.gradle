@@ -6,8 +6,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}",
-                  "io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+//                  "com.moowork.gradle:gradle-gulp-plugin:0.11"
+//                  "com.moowork.gradle:gradle-node-plugin:0.11"
     }
 }
 
@@ -18,8 +19,6 @@ apply plugin: "java"
 apply plugin: "eclipse"
 apply plugin: "idea"
 apply plugin: "spring-boot"
-apply plugin: "application"
-apply plugin: "io.spring.dependency-management"
 
 jar {
     baseName = "blog"
@@ -48,5 +47,70 @@ dependencies {
     runtime "com.h2database:h2"
 
     testCompile "org.springframework.boot:spring-boot-starter-test",
-            "org.springframework.restdocs:spring-restdocs-mockmvc:1.0.0.RC1"
+                "org.springframework.restdocs:spring-restdocs-mockmvc:1.0.0.RC1"
 }
+
+import org.apache.tools.ant.taskdefs.condition.Os
+
+task npm(type: Exec) {
+    workingDir "${project.projectDir}/src/main/resources/ui"
+
+    commandLine "./npm.sh"
+
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine "cmd", "/c", "npm.bat" // test.me
+    } else {
+        commandLine "./npm.sh"
+    }
+
+    // print output into console
+    standardOutput = new ByteArrayOutputStream()
+
+    // use npm.output() to obtain output
+    ext.output = {
+        return standardOutput.toString()
+    }
+    // ignoreExitValue = true
+}
+
+/* // 3:
+apply plugin: "com.moowork.node"
+task installExpress(type: NpmTask) { args = ["install", "express", "--save-dev"] }
+npm_install.dependsOn(npm_cache_clean)
+node { version = "0.11.10"
+       npmVersion = "3.3.6"
+       distBaseUrl = "https://nodejs.org/dist"
+       download = true
+       workDir = file("${project.buildDir}/nodejs")
+       nodeModulesDir = file("${project.projectDir}/src/main/resources/ui") } */
+
+/* // 2:
+apply plugin: "com.moowork.gulp"
+gulp { workDir = file("src/main/resources/ui") }
+node { download = true
+       workDir = file("${project.buildDir}") }
+build.dependsOn "gulp_default"
+build.mustRunAfter "gulp_default"
+gulp_default.dependsOn installGulp
+installGulp.dependsOn npm_cache_clean
+clean.dependsOn npm_cache_clean
+clean.dependsOn "gulp_clean"
+gulp_clean.dependsOn installGulp
+*/
+
+/* // 1:
+task gulp_default(type: GulpTask, dependsOn: "installGulp") { args = ["default"] }
+task gulp_clean(type: GulpTask, dependsOn: "installGulp") { args = ["clean"] }
+*/
+
+/* // 0:
+node { version = "0.11.10"
+       npmVersion = "3.3.6"
+       distBaseUrl = "https://nodejs.org/dist"
+       download = true
+       workDir = file("${project.buildDir}")
+       nodeModulesDir = file("${project.projectDir}/src/main/resources/ui/node_modules") }
+gulp_build.dependsOn "npmSetup"
+gulp_build.dependsOn "installGulp"
+gulp_build.dependsOn "npmInstall"
+*/

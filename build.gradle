@@ -55,62 +55,18 @@ import org.apache.tools.ant.taskdefs.condition.Os
 task npm(type: Exec) {
     workingDir "${project.projectDir}/src/main/resources/ui"
 
-    commandLine "./npm.sh"
-
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         commandLine "cmd", "/c", "npm.bat" // test.me
     } else {
         commandLine "./npm.sh"
     }
-
-    // print output into console
+    // print to console
     standardOutput = new ByteArrayOutputStream()
-
-    // use npm.output() to obtain output
-    ext.output = {
-        return standardOutput.toString()
-    }
+    // use npm.output() to get output
+    ext.output = { return standardOutput.toString() }
     // ignoreExitValue = true
 }
 
-/* // 3:
-apply plugin: "com.moowork.node"
-task installExpress(type: NpmTask) { args = ["install", "express", "--save-dev"] }
-npm_install.dependsOn(npm_cache_clean)
-node { version = "0.11.10"
-       npmVersion = "3.3.6"
-       distBaseUrl = "https://nodejs.org/dist"
-       download = true
-       workDir = file("${project.buildDir}/nodejs")
-       nodeModulesDir = file("${project.projectDir}/src/main/resources/ui") } */
-
-/* // 2:
-apply plugin: "com.moowork.gulp"
-gulp { workDir = file("src/main/resources/ui") }
-node { download = true
-       workDir = file("${project.buildDir}") }
-build.dependsOn "gulp_default"
-build.mustRunAfter "gulp_default"
-gulp_default.dependsOn installGulp
-installGulp.dependsOn npm_cache_clean
-clean.dependsOn npm_cache_clean
-clean.dependsOn "gulp_clean"
-gulp_clean.dependsOn installGulp
-*/
-
-/* // 1:
-task gulp_default(type: GulpTask, dependsOn: "installGulp") { args = ["default"] }
-task gulp_clean(type: GulpTask, dependsOn: "installGulp") { args = ["clean"] }
-*/
-
-/* // 0:
-node { version = "0.11.10"
-       npmVersion = "3.3.6"
-       distBaseUrl = "https://nodejs.org/dist"
-       download = true
-       workDir = file("${project.buildDir}")
-       nodeModulesDir = file("${project.projectDir}/src/main/resources/ui/node_modules") }
-gulp_build.dependsOn "npmSetup"
-gulp_build.dependsOn "installGulp"
-gulp_build.dependsOn "npmInstall"
-*/
+build.dependsOn npm
+build.shouldRunAfter npm
+npm.shouldRunAfter clean

@@ -22,7 +22,7 @@ public class UserRepositoryTest extends SpringTest {
 
     @Test
     public void testCount() throws Exception {
-        assertEquals(4, repository.count());
+        assertEquals("repository.count", 4, repository.count());
 
         User res = repository.findOne(1L);
         assertNotNull(res.username);

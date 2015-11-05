@@ -50,12 +50,12 @@ dependencies {
 
 import org.apache.tools.ant.taskdefs.condition.Os
 
-task npm(type: Exec) {
-    def scriptName = "nodejs"
+task www(type: Exec) {
+    def scriptName = "build"
 
     println "npm is starting ui build..."
 
-    workingDir "${project.projectDir}"
+    workingDir "${project.projectDir}/www"
 
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         commandLine "cmd", "/c", "${scriptName}.bat" // test.me
@@ -70,6 +70,6 @@ task npm(type: Exec) {
     ignoreExitValue = false
 }
 
-build.dependsOn npm
-build.shouldRunAfter npm
-npm.shouldRunAfter clean
+build.dependsOn www
+build.shouldRunAfter www
+www.shouldRunAfter clean

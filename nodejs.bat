@@ -1,4 +1,4 @@
 @echo off
 
-npm run npm-install
+npm run fetch
 npm run gulp

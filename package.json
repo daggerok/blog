@@ -4,7 +4,8 @@
   "description": "Blog",
   "main": "app/js/blog.js",
   "scripts": {
-    "npm-install": "npm install",
+    "fetch": "npm install",
+    "clean": "gulp clean",
     "gulp": "gulp"
   },
   "repository": {
@@ -17,11 +18,20 @@
   "author": "Maksim Kostromin",
   "license": "ISC",
   "homepage": "https://bitbucket.org/daggerok/blog#readme",
-  "dependencies": {},
+  "dependencies": {
+    "normalize.css": "^3.0.3"
+  },
   "devDependencies": {
+    "csswring": "^4.0.0",
+    "del": "^2.0.2",
     "gulp": "^3.9.0",
-    "rimraf": "^2.4.3",
+    "gulp-concat": "^2.6.0",
+    "gulp-dir-sync": "^0.1.2",
+    "gulp-html-replace": "^1.5.4",
+    "gulp-minify": "0.0.5",
     "gulp-postcss": "^6.0.1",
-    "gulp-sourcemaps": "^1.6.0"
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.2",
+    "vinyl-paths": "^2.0.0"
   }
 }

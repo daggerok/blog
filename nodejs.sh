@@ -1,4 +1,4 @@
 #!/bin/bash
 
-npm run npm-install
+npm run fetch
 npm run gulp

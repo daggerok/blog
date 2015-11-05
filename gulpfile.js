@@ -1,41 +1,61 @@
-'use strict'
+'use strict';
 
-var fromDir = 'src-ui/'
-var toDir = 'src/main/resources/public'
+var from = 'src-ui/',
+  cssSrc = from + 'css/',
+  modules = 'node_modules/',
+  dest = 'src/main/resources/public/';
+
 var gulp = require('gulp'),
-    rm = require('rimraf'),
-    postcss = require('gulp-postcss'),
-    sourcemaps = require('gulp-sourcemaps');
+  uglify = require('gulp-uglify'),
+  concat = require('gulp-concat'),
+  postcss = require('gulp-postcss'),
+  htmlReplace = require('gulp-html-replace'),
+  csswring = require('csswring'),
+  del = require('del');
 
-gulp.task('clean', function(cb) {
-  console.log('clean '.concat(toDir).concat(' folder'));
-  rm(toDir, cb)
+gulp.task('clean', function() {
+  console.log('clean ' + dest);
+  del(dest);
 });
 
-gulp.task('build', ['clean'], function() {
-  console.log('process '.concat(fromDir).concat(' folder'));
+gulp.task('libs', ['clean'], function() {
+  gulp
+    .src(modules.concat('/normalize.css/normalize.css'))
+    .pipe(gulp.dest(cssSrc));
 });
 
-gulp.task('deploy', ['build'], function() {
-  console.log('deploy ui into '.concat(toDir));
-
-  gulp.src([
-    fromDir.concat('**/*.js'),
-  ], {
-    base: fromDir
-  }).pipe(gulp.dest(toDir));
-
-  gulp.src([
-    fromDir.concat('**/*.css'),
-  ], {
-    base: fromDir
-  }).pipe(gulp.dest(toDir));
-
-  gulp.src([
-    fromDir.concat('**/*.html'),
-  ], {
-    base: fromDir
-  }).pipe(gulp.dest(toDir));
+gulp.task('min-js', ['libs'], function() {
+  console.log('process js files into ' + dest);
+  gulp
+    .src(from + '**/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest(dest));
 });
 
-gulp.task('default', ['deploy']);
+gulp.task('css', ['libs'], function() {
+  var styles = [
+    cssSrc.concat('normalize.css'),
+    cssSrc.concat('blog.css')
+  ];
+  var processors = [csswring];
+
+  console.log('process ' + styles + ' into ' + dest);
+  gulp
+    .src(styles)
+    .pipe(concat('css/blog.css'))
+    .pipe(postcss(processors))
+    .pipe(gulp.dest(dest));
+});
+
+gulp.task('html', ['min-js', 'css'], function() {
+  console.log('process html files into ' + dest);
+  gulp
+    .src(from.concat('**/*.html'), {base: from})
+    .pipe(htmlReplace({
+      'css': 'css/blog.css',
+      'js': 'js/blog.js'
+    }))
+    .pipe(gulp.dest(dest));
+});
+
+gulp.task('default', ['html']);

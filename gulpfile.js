@@ -2,7 +2,6 @@
 
 var from = 'src-ui/',
   cssSrc = from + 'css/',
-  modules = 'node_modules/',
   dest = 'src/main/resources/public/';
 
 var gulp = require('gulp'),
@@ -20,7 +19,7 @@ gulp.task('clean', function() {
 
 gulp.task('libs', ['clean'], function() {
   gulp
-    .src(modules.concat('/normalize.css/normalize.css'))
+    .src('node_modules/'.concat('/normalize.css/normalize.css'))
     .pipe(gulp.dest(cssSrc));
 });
 

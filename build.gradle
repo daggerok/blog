@@ -53,7 +53,7 @@ dependencies {
 import org.apache.tools.ant.taskdefs.condition.Os
 
 task npm(type: Exec) {
-    workingDir "${project.projectDir}/src/main/resources/ui"
+    workingDir "${project.projectDir}"
 
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         commandLine "cmd", "/c", "npm.bat" // test.me

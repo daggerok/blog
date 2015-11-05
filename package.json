@@ -2,10 +2,10 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "Blog",
-  "main": "blog.js",
+  "main": "app/js/blog.js",
   "scripts": {
-    "gulp": "gulp",
-    "npm-install": "npm install"
+    "npm-install": "npm install",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",

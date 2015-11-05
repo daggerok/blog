@@ -7,8 +7,6 @@ buildscript {
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-//                  "com.moowork.gradle:gradle-gulp-plugin:0.11"
-//                  "com.moowork.gradle:gradle-node-plugin:0.11"
     }
 }
 
@@ -53,18 +51,23 @@ dependencies {
 import org.apache.tools.ant.taskdefs.condition.Os
 
 task npm(type: Exec) {
+    def scriptName = "nodejs"
+
+    println "npm is starting ui build..."
+
     workingDir "${project.projectDir}"
 
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        commandLine "cmd", "/c", "npm.bat" // test.me
+        commandLine "cmd", "/c", "${scriptName}.bat" // test.me
     } else {
-        commandLine "./npm.sh"
+        commandLine "./${scriptName}.sh"
     }
     // print to console
     standardOutput = new ByteArrayOutputStream()
     // use npm.output() to get output
     ext.output = { return standardOutput.toString() }
-    // ignoreExitValue = true
+
+    ignoreExitValue = false
 }
 
 build.dependsOn npm

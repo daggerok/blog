@@ -1,8 +1,11 @@
-var gulp = require('gulp'),
-    rm = require('rimraf');
+'use strict'
 
 var fromDir = 'src-ui/'
 var toDir = 'src/main/resources/public'
+var gulp = require('gulp'),
+    rm = require('rimraf'),
+    postcss = require('gulp-postcss'),
+    sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('clean', function(cb) {
   console.log('clean '.concat(toDir).concat(' folder'));

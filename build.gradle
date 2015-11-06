@@ -36,11 +36,16 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-hateoas",
             "org.springframework.boot:spring-boot-starter-data-rest",
             "org.springframework.boot:spring-boot-starter-data-jpa",
-
+            // spring boot metrics and maintain
             "org.springframework.boot:spring-boot-starter-actuator",
             "org.springframework.boot:spring-boot-starter-remote-shell",
-
-            "org.projectlombok:lombok:1.16.6"
+            // code gen
+            "org.projectlombok:lombok:1.16.6",
+            // guava cache
+            "org.springframework:spring-context-support:4.2.2.RELEASE",
+            "com.google.guava:guava:18.0",
+            // java 8 jsr310 postDate api
+            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.3"
 
     runtime "com.h2database:h2"
 
@@ -53,14 +58,14 @@ import org.apache.tools.ant.taskdefs.condition.Os
 task www(type: Exec) {
     def scriptName = "build"
 
-    println "npm is starting ui build..."
+    println "starting npm install and www build..."
 
     workingDir "${project.projectDir}/www"
 
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         commandLine "cmd", "/c", "${scriptName}.bat" // test.me
     } else {
-        commandLine "./${scriptName}.sh"
+        commandLine "/bin/bash", "${scriptName}.sh"
     }
     // print to console
     standardOutput = new ByteArrayOutputStream()

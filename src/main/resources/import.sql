@@ -1,4 +1,4 @@
-insert into user (username) values ('Max')
-insert into user (username) values ('Mak')
-insert into user (username) values ('Makseg')
-insert into user (username) values ('Maksimko')
+insert into post (author, subject, body) values ('author2', 'subject2', 'body2');
+insert into post (author, subject, body) values ('author2', 'subject2', 'body2');
+insert into post (author, subject, body) values ('author3', 'subject3', 'body3');
+insert into post (author, subject, body) values ('author4', 'subject4', 'body4');

@@ -46,7 +46,7 @@ gulp.task('watch-html', function() {
 });
 
 // watch all
-gulp.task('watch', ['libs', 'min', 'html', 'watch-js', 'watch-css', 'watch-img', 'watch-html']);
+gulp.task('watch', ['default', 'watch-js', 'watch-css', 'watch-img', 'watch-html']);
 
 /* BUILD */
 
@@ -108,4 +108,4 @@ gulp.task('html', function() {
 });
 
 // run html task by default
-gulp.task('default', ['clean', 'libs', 'min', 'html']);
+gulp.task('default', ['libs', 'min', 'html']);

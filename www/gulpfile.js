@@ -33,8 +33,8 @@ gulp.task('watch-css', function() {
 
 // watch images into build dir
 gulp.task('watch-img', function() {
-  watch(srcDir + '**/*.html', batch(function(events, done) {
-    gulp.start('img', done);
+  watch(srcDir + 'img/**/*', batch(function(events, done) {
+    gulp.start('min-img', done);
   }));
 });
 
@@ -44,6 +44,9 @@ gulp.task('watch-html', function() {
     gulp.start('html', done);
   }));
 });
+
+// watch all
+gulp.task('watch', ['libs', 'min', 'html', 'watch-js', 'watch-css', 'watch-img', 'watch-html']);
 
 /* BUILD */
 
@@ -84,14 +87,17 @@ gulp.task('min-css', function() {
 });
 
 // minify images into build dir
-gulp.task('img', function() {
+gulp.task('min-img', function() {
   gulp
     .src(srcDir + 'img/*.*', {base: srcDir})
     .pipe(gulp.dest(webDir));
 });
 
+// minify sources
+gulp.task('min', ['min-js', 'min-css', 'min-img']);
+
 // replace html into build dir
-gulp.task('html', ['min-js', 'min-css', 'img'], function() {
+gulp.task('html', function() {
   gulp
     .src(srcDir + '**/*.html', {base: srcDir})
     .pipe(replace({
@@ -102,4 +108,4 @@ gulp.task('html', ['min-js', 'min-css', 'img'], function() {
 });
 
 // run html task by default
-gulp.task('default', ['clean', 'libs', 'min-js', 'min-css', 'img', 'html']);
+gulp.task('default', ['clean', 'libs', 'min', 'html']);

@@ -6,7 +6,8 @@
   "scripts": {
     "fetch": "npm install",
     "clean": "gulp clean",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",

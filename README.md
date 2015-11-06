@@ -67,14 +67,17 @@
         
         $ gulp
 * What gulp does?
-    - combine/minify js
-    - combine/minify css
-    - minify images
+    - combine/minify js, css, images
+        
+        $ gulp min # npm run gulp min
     - replace html parts
-    - watching js, css
-    - build into server web dir
+        
+        $ gulp html # npm run gulp html
+    - watching sources
+        
+        $ gulp watch # npm run watch
 * Other guidelines
 
 ### Who do I talk to? ###
 
-Maksim Kostromin daggerok@gmail.com :)
+daggerok@gmail.com :)

@@ -65,7 +65,7 @@ task www(type: Exec) {
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         commandLine "cmd", "/c", "${scriptName}.bat" // test.me
     } else {
-        commandLine "/bin/bash", "${scriptName}.sh"
+        commandLine "./${scriptName}.sh"
     }
     // print to console
     standardOutput = new ByteArrayOutputStream()

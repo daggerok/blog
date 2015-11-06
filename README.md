@@ -1,11 +1,11 @@
-# Java back-end + JavaScritp front-end #
+# Java back-end + JavaScript front-end #
 
 ### What is this repository for? ###
 
 * Do you wanna be full-stack developer?
 * This is an example of Java+JavaScript web project with some common and very useful stuff
 
-###Example of full stack web project written on Java + JavaScript ###
+### Example of full stack web project written on Java + JavaScript ###
 
 ***Build system and dependency managers:***
 
@@ -20,12 +20,19 @@
 * clone repo
 
         $ git clone ... && cd blog/
-* only one command
+* only one command (all in one)
 
-        $ ./gradlew build run
-*I'm pretty sure, that it should works on both - mac and windows*
+        $ ./gradlew build run # or gradlew.bat build run
+* or without gradle wrapper (make jar not war:))
+        
+        $ java -jar build/libs/blog-1.0.jar # after successful build
+*I'm pretty sure, that it should works :) it worked on my home mac os x and company's pc*
 
 ### What is back-end? ###
+1. pure java/spring-boot application on gradle
+2. hateoas data-rest
+3. default db request caching with guava
+4. flexible, maintainable and pretty server-side on steroids :) 
 
 * How to test
     - what do we have? index works, okay...
@@ -44,13 +51,14 @@
     - cool, does it really do one annotation? read more about @RepositoryRestResource and Spring at all
     - easy cache config, easy unit and integration testing, easy booting, easy config
     - back-end support and develop very easy :)
-
+    
 ### What is front-end? ###
 
+* html5/css/js blog skeleton with npm and gulp 
 * How to build
-    - gradle + shell-scripts www/build.{sh,bat}
+    - shell-scripts www/build.{sh,bat} and gradle wrapper
     
-        $ ./gradlew www
+        $ ./gradlew www # or gradlew.bat www
     - npm
         
         $ cd www/
@@ -58,7 +66,6 @@
     - gulp
         
         $ gulp
-    
 * What gulp does?
     - combine/minify js
     - combine/minify css
@@ -70,5 +77,4 @@
 
 ### Who do I talk to? ###
 
-* Repo owner and admin: Maksim Kostromin daggerok@gmail.com 
-* Visit my blog http://daggerok.blogspot.com
+Maksim Kostromin daggerok@gmail.com :)

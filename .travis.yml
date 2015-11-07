@@ -1,7 +1,7 @@
 language: java
 before_install:
-- nvm install 5.0
-- nvm use 5.0
+  - nvm install 5.0
+  - nvm use 5.0
 script: "./gradlew build"
 jdk:
-- oraclejdk8
+  - oraclejdk8

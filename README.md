@@ -28,6 +28,8 @@
         $ java -jar build/libs/blog-1.0.jar # after successful build
 *I'm pretty sure, that it should works :) it worked on my home mac os x and company's pc*
 
+* anyway, i've added .travis.yml for build
+
 ### What is back-end? ###
 1. pure java/spring-boot application on gradle
 2. hateoas data-rest

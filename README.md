@@ -28,6 +28,8 @@
         $ java -jar build/libs/blog-1.0.jar # after successful build
 *I'm pretty sure, that it should works :) it worked on my home mac os x and company's pc*
 
+* anyway, i've added .travis.yml for build: [![build](https://api.travis-ci.org/daggerok/blog.svg?branch=master)](https://api.travis-ci.org/daggerok/blog.svg?branch=master)
+
 ### What is back-end? ###
 1. pure java/spring-boot application on gradle
 2. hateoas data-rest
@@ -37,16 +39,16 @@
 * How to test
     - what do we have? index works, okay...
         
-        $ curl -XGET http://localhost:8080
+        $ curl -XGET localhost:8080
     - what's api?
         
-        $ curl -XGET http://localhost:8080/api/alps -H "Accept: application/x-spring-data-compact+json"
+        $ curl -XGET localhost:8080/api/alps -H "Accept: application/x-spring-data-compact+json"
     - I see.. let's try:
     
-        $ curl -XGET http://localhost:8080/api/post -H "Accept: application/x-spring-data-compact+json" 
+        $ curl -XGET localhost:8080/api/post -H "Accept: application/x-spring-data-compact+json" 
     - I see... can I save something?
      
-        $ curl -XPOST http://localhost:8080/api/posts -H "Content-Type: application/json" \ 
+        $ curl -XPOST localhost:8080/api/posts -H "Content-Type: application/json" \ 
             -d '{"author":"some name","subject":"some topic","body":"trololo..."}'
     - cool, does it really do one annotation? read more about @RepositoryRestResource and Spring at all
     - easy cache config, easy unit and integration testing, easy booting, easy config
@@ -77,6 +79,6 @@
         
         $ gulp watch # npm run watch
 
-### Who do I talk to? ###
+### Who do I talk to? :) ###
 
-daggerok@gmail.com :)
+daggerok@gmail.com

@@ -14,7 +14,6 @@ group "com.daggerok"
 version "1.0.0"
 
 apply plugin: "java"
-apply plugin: "eclipse"
 apply plugin: "idea"
 apply plugin: "spring-boot"
 
@@ -44,7 +43,7 @@ dependencies {
             // guava cache
             "org.springframework:spring-context-support:4.2.2.RELEASE",
             "com.google.guava:guava:18.0",
-            // java 8 jsr310 postDate api
+            // java 8 jsr310 api for postDate
             "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.3"
 
     runtime "com.h2database:h2"
@@ -63,7 +62,7 @@ task www(type: Exec) {
     workingDir "${project.projectDir}/www"
 
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        commandLine "cmd", "/c", "${scriptName}.bat" // test.me
+        commandLine "cmd", "/c", "${scriptName}.bat"
     } else {
         commandLine "./${scriptName}.sh"
     }

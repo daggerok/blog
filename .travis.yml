@@ -1,16 +1,9 @@
 sudo: require
 language: java
 before_install:
-- node -v && npm -v
-- sudo apt-get remove nodejs
-- sudo add-apt-repository -y -r ppa:chris-lea/node.js
-- sudo apt-get update
-- sudo apt-get install nodejs
-- node -v && npm -v
 - nvm install 5.0
 - nvm use 5.0
 - node -v && npm -v
-- chmod +x www/build.sh
 script: "./gradlew build"
 jdk:
 - oraclejdk8

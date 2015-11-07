@@ -9,48 +9,21 @@ var srcDir = 'src/',
   webDir = '../src/main/resources/public/';
 
 var gulp = require('gulp'),
-  watch = require('gulp-watch'),
-  batch = require('gulp-batch'),
   clean = require('gulp-rimraf'),
+  plumber = require('gulp-plumber'),
   postcss = require('gulp-postcss'),
   replace = require('gulp-html-replace'),
   combineCss = require('gulp-concat'),
   minifyJs = require('gulp-uglify'),
   minifyCss = require('csswring');
 
-
-/* WATCH */
-
-// watch js files into build dir
-gulp.task('watch-js', function() {
-  watch(jsFiles, batch(function(events, done) {
-    gulp.start('min-js', done);
-  }));
+// watch files into build dir
+gulp.task('watch', ['default'], function() {
+  gulp.watch(jsFiles, ['min-js']);
+  gulp.watch(srcDir + anyCss, ['min-css']);
+  gulp.watch(images, ['min-img']);
+  gulp.watch(htmlFiles, ['html']);
 });
-
-// watch css files into build dir
-gulp.task('watch-css', function() {
-  watch(srcDir + anyCss, batch(function(events, done) {
-    gulp.start('min-css', done);
-  }));
-});
-
-// watch images into build dir
-gulp.task('watch-img', function() {
-  watch(images, batch(function(events, done) {
-    gulp.start('min-img', done);
-  }));
-});
-
-// watch html files into build dir
-gulp.task('watch-html', function() {
-  watch(htmlFiles, batch(function(events, done) {
-    gulp.start('html', done);
-  }));
-});
-
-// watch all
-gulp.task('watch', ['default', 'watch-js', 'watch-css', 'watch-img', 'watch-html']);
 
 /* BUILD */
 
@@ -72,6 +45,7 @@ gulp.task('libs', function() {
 gulp.task('min-js', function() {
   gulp
     .src(jsFiles)
+    .pipe(plumber())
     .pipe(minifyJs())
     .pipe(gulp.dest(webDir));
 });
@@ -85,7 +59,9 @@ gulp.task('min-css', function() {
 
   gulp
     .src(styles)
+    .pipe(plumber())
     .pipe(combineCss('css/blog.css'))
+    .pipe(plumber())
     .pipe(postcss([minifyCss]))
     .pipe(gulp.dest(webDir));
 });
@@ -104,6 +80,7 @@ gulp.task('min', ['min-js', 'min-css', 'min-img']);
 gulp.task('html', function() {
   gulp
     .src(htmlFiles, {base: srcDir})
+    .pipe(plumber())
     .pipe(replace({
       'css': 'css/blog.css',
       'js': 'js/blog.js'

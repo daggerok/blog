@@ -5,6 +5,7 @@ before_install:
   - curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
   - sudo apt-get install -y nodejs
   - sudo apt-get install --yes build-essential
+  - chmod +x www/build.sh
 script: "./gradlew build"
 jdk:
   - oraclejdk8

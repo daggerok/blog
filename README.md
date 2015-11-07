@@ -28,7 +28,7 @@
         $ java -jar build/libs/blog-1.0.jar # after successful build
 *I'm pretty sure, that it should works :) it worked on my home mac os x and company's pc*
 
-* anyway, i've added .travis.yml for build
+* anyway, i've added .travis.yml for build: [![build](https://api.travis-ci.org/daggerok/blog.svg?branch=master)](https://api.travis-ci.org/daggerok/blog.svg?branch=master)
 
 ### What is back-end? ###
 1. pure java/spring-boot application on gradle

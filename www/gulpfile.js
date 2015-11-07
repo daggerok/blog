@@ -13,21 +13,12 @@ var gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   postcss = require('gulp-postcss'),
   replace = require('gulp-html-replace'),
-  livereload = require('gulp-livereload'),
   combineCss = require('gulp-concat'),
   minifyJs = require('gulp-uglify'),
   minifyCss = require('csswring');
 
 // watch files into build dir
 gulp.task('watch', ['default'], function() {
-  //livereload({ start: true });
-  livereload.listen({
-    port: 3000,
-    host: 'localhost',
-    start: true,
-    quiet: false
-  });
-
   gulp.watch(jsFiles, ['min-js']);
   gulp.watch(srcDir + anyCss, ['min-css']);
   gulp.watch(images, ['min-img']);
@@ -96,8 +87,7 @@ gulp.task('html', function() {
       'css': 'css/blog.css',
       'js': 'js/blog.js'
     }))
-    .pipe(gulp.dest(webDir))
-    .pipe(livereload());
+    .pipe(gulp.dest(webDir));
 });
 
 // run html task by default

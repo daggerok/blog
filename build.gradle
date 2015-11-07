@@ -11,7 +11,7 @@ buildscript {
 }
 
 group "com.daggerok"
-version "1.0"
+version "1.0.0"
 
 apply plugin: "java"
 apply plugin: "eclipse"
@@ -20,7 +20,7 @@ apply plugin: "spring-boot"
 
 jar {
     baseName = "blog"
-    version = "1.0"
+    version = "1.0.0"
 }
 
 sourceCompatibility = 1.8

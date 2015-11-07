@@ -79,6 +79,6 @@
         
         $ gulp watch # npm run watch
 
-### Who do I talk to? ###
+### Who do I talk to? :) ###
 
-daggerok@gmail.com :)
+daggerok@gmail.com

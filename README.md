@@ -39,16 +39,16 @@
 * How to test
     - what do we have? index works, okay...
         
-        $ curl -XGET http://localhost:8080
+        $ curl -XGET localhost:8080
     - what's api?
         
-        $ curl -XGET http://localhost:8080/api/alps -H "Accept: application/x-spring-data-compact+json"
+        $ curl -XGET localhost:8080/api/alps -H "Accept: application/x-spring-data-compact+json"
     - I see.. let's try:
     
-        $ curl -XGET http://localhost:8080/api/post -H "Accept: application/x-spring-data-compact+json" 
+        $ curl -XGET localhost:8080/api/post -H "Accept: application/x-spring-data-compact+json" 
     - I see... can I save something?
      
-        $ curl -XPOST http://localhost:8080/api/posts -H "Content-Type: application/json" \ 
+        $ curl -XPOST localhost:8080/api/posts -H "Content-Type: application/json" \ 
             -d '{"author":"some name","subject":"some topic","body":"trololo..."}'
     - cool, does it really do one annotation? read more about @RepositoryRestResource and Spring at all
     - easy cache config, easy unit and integration testing, easy booting, easy config

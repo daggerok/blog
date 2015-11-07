@@ -27,6 +27,7 @@
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-html-replace": "^1.5.4",
+    "gulp-imagemin": "^2.4.0",
     "gulp-plumber": "^1.0.1",
     "gulp-postcss": "^6.0.1",
     "gulp-rimraf": "^0.2.0",

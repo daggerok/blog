@@ -14,10 +14,11 @@ var gulp = require('gulp'),
   postcss = require('gulp-postcss'),
   replace = require('gulp-html-replace'),
   combineCss = require('gulp-concat'),
+  minifyImg = require('gulp-imagemin'),
   minifyJs = require('gulp-uglify'),
   minifyCss = require('csswring');
 
-// watch files into build dir
+// watch files into build 
 gulp.task('watch', ['default'], function() {
   gulp.watch(jsFiles, ['min-js']);
   gulp.watch(srcDir + anyCss, ['min-css']);
@@ -72,6 +73,7 @@ gulp.task('min-css', function() {
 gulp.task('min-img', function() {
   gulp
     .src(images, {base: srcDir})
+    .pipe(minifyImg())
     .pipe(gulp.dest(webDir));
 });
 

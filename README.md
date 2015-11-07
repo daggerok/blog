@@ -76,7 +76,7 @@
     - watching sources
         
         $ gulp watch # npm run watch
-* Other guidelines
+    - process compile errors with plumber
 
 ### Who do I talk to? ###
 

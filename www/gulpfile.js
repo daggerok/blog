@@ -47,6 +47,8 @@ gulp.task('min-js', function() {
     .src(jsFiles)
     .pipe(plumber())
     .pipe(minifyJs())
+    // emitting errors without plumber:
+    //.on('error', console.error.bind(console))
     .pipe(gulp.dest(webDir));
 });
 

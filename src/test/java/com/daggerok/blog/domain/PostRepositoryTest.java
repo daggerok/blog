@@ -7,6 +7,7 @@ import org.junit.Test;
 import javax.annotation.Resource;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;

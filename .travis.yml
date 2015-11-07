@@ -1,8 +1,7 @@
 sudo: require
 language: java
 before_install:
-- sudo npm rm npm -g
-- dpkg -r nodejs
+- sudo apt-get remove nodejs
 - sudo add-apt-repository -y -r ppa:chris-lea/node.js
 - sudo apt-get update
 - sudo apt-get install nodejs

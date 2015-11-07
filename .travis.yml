@@ -3,7 +3,6 @@ language: java
 before_install:
   - curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
   - sudo apt-get install --yes nodejs build-essential nodejs-legacy
-  - sudo ln -s /usr/bin/nodejs /usr/bin/node
   - chmod +x www/build.sh
 script: "./gradlew build"
 jdk:

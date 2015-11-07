@@ -15,9 +15,6 @@ public class PostRepositoryTest extends SpringTest {
     @Resource
     private PostRepository repository;
 
-    @Before
-    public void setUp() throws Exception {}
-
     @Test
     public void testContext() throws Exception {
         assertNotNull("repository.null", repository);

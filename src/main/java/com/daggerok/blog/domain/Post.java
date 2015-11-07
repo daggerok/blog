@@ -24,7 +24,7 @@ public class Post {
     public String body;
 
     @ElementCollection(targetClass = String.class)
-    public Set<String> tags = new HashSet<>(); // or Map<String, String>, but not List
+    public Set<String> tags = new HashSet<>(); // or Map, not List
 
     @Column(name = "post_date", nullable = true)
     public LocalDate postDate = LocalDate.now();

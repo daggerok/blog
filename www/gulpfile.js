@@ -1,7 +1,11 @@
 'use strict';
 
 var srcDir = 'src/',
+  anyCss = '**/*.css',
   cssDir = srcDir + 'css/',
+  jsFiles = srcDir + '**/*.js',
+  images = srcDir + 'img/**/*',
+  htmlFiles = srcDir + '**/*.html',
   webDir = '../src/main/resources/public/';
 
 var gulp = require('gulp'),
@@ -19,28 +23,28 @@ var gulp = require('gulp'),
 
 // watch js files into build dir
 gulp.task('watch-js', function() {
-  watch(srcDir + '**/*.js', batch(function(events, done) {
+  watch(jsFiles, batch(function(events, done) {
     gulp.start('min-js', done);
   }));
 });
 
 // watch css files into build dir
 gulp.task('watch-css', function() {
-  watch(srcDir + '**/*.css', batch(function(events, done) {
+  watch(srcDir + anyCss, batch(function(events, done) {
     gulp.start('min-css', done);
   }));
 });
 
 // watch images into build dir
 gulp.task('watch-img', function() {
-  watch(srcDir + 'img/**/*', batch(function(events, done) {
+  watch(images, batch(function(events, done) {
     gulp.start('min-img', done);
   }));
 });
 
 // watch html files into build dir
 gulp.task('watch-html', function() {
-  watch(srcDir + '**/*.html', batch(function(events, done) {
+  watch(htmlFiles, batch(function(events, done) {
     gulp.start('html', done);
   }));
 });
@@ -67,7 +71,7 @@ gulp.task('libs', function() {
 // combine and minify js files into build dir
 gulp.task('min-js', function() {
   gulp
-    .src(srcDir + '**/*.js')
+    .src(jsFiles)
     .pipe(minifyJs())
     .pipe(gulp.dest(webDir));
 });
@@ -89,7 +93,7 @@ gulp.task('min-css', function() {
 // minify images into build dir
 gulp.task('min-img', function() {
   gulp
-    .src(srcDir + 'img/*.*', {base: srcDir})
+    .src(images, {base: srcDir})
     .pipe(gulp.dest(webDir));
 });
 
@@ -99,7 +103,7 @@ gulp.task('min', ['min-js', 'min-css', 'min-img']);
 // replace html into build dir
 gulp.task('html', function() {
   gulp
-    .src(srcDir + '**/*.html', {base: srcDir})
+    .src(htmlFiles, {base: srcDir})
     .pipe(replace({
       'css': 'css/blog.css',
       'js': 'js/blog.js'

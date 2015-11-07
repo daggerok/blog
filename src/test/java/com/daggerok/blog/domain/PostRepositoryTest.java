@@ -21,7 +21,7 @@ public class PostRepositoryTest extends SpringTest {
 
     @Test
     public void testDefaultCount() throws Exception {
-        assertEquals("repository.count", 4, repository.count());
+        assertEquals("see TestData", 4, repository.count());
     }
 
     @Test

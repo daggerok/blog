@@ -1,10 +1,9 @@
 sudo: require
 language: java
 before_install:
+- sudo npm uninstall npm
+- dpkg -r nodejs
 - sudo add-apt-repository -y -r ppa:chris-lea/node.js
-- sudo rm -f /etc/apt/sources.list.d/chris-lea-node_js-*.list
-- sudo echo 'deb https://deb.nodesource.com/node_5.x trusty main' > /etc/apt/sources.list.d/nodesource.list
-- sudo echo 'deb-src https://deb.nodesource.com/node_5.x trusty main' >> /etc/apt/sources.list.d/nodesource.list
 - sudo apt-get update
 - sudo apt-get install nodejs
 - chmod +x www/build.sh

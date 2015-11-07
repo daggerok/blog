@@ -73,10 +73,9 @@
     - replace html parts
         
         $ gulp html # npm run gulp html
-    - watching sources
+    - watching sources with live reload and processing compile errors with plumber
         
         $ gulp watch # npm run watch
-    - process compile errors with plumber
 
 ### Who do I talk to? ###
 

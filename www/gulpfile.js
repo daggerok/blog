@@ -12,10 +12,11 @@ var srcDir = 'src/',
 
 var gulp = require('gulp'),
   clean = require('gulp-rimraf'),
+  combine = require('gulp-concat'),
   plumber = require('gulp-plumber'),
   postcss = require('gulp-postcss'),
   replace = require('gulp-html-replace'),
-  combine = require('gulp-concat'),
+  minifyHTML = require('gulp-minify-html'),
   minifyImg = require('gulp-imagemin'),
   minifyJs = require('gulp-uglify'),
   minifyCss = require('csswring');
@@ -37,7 +38,7 @@ gulp.task('clean', function() {
     .pipe(clean({force: true}));
 });
 
-// combine and minify js files into build dir
+// combine and min js files into build dir
 gulp.task('min-js', function() {
   var scripts = [
     modulesDir + 'angular/angular.js',
@@ -55,7 +56,7 @@ gulp.task('min-js', function() {
     .pipe(gulp.dest(webDir));
 });
 
-// combine and minify css files into build dir
+// combine and min css files into build dir
 gulp.task('min-css', function() {
   var styles = [
     modulesDir + 'normalize.css/normalize.css',
@@ -71,7 +72,7 @@ gulp.task('min-css', function() {
     .pipe(gulp.dest(webDir));
 });
 
-// minify images into build dir
+// min images into build dir
 gulp.task('min-img', function() {
   gulp
     .src(images, {base: srcDir})
@@ -80,8 +81,10 @@ gulp.task('min-img', function() {
     .pipe(gulp.dest(webDir));
 });
 
-// replace html into build dir
-gulp.task('process-html-and-deploy', function() {
+gulp.task('min', ['min-js', 'min-css', 'min-img']);
+
+// replace and min html into build dir
+gulp.task('process-html', function() {
   return gulp
     .src(htmlFiles, {base: srcDir})
     .pipe(plumber())
@@ -89,11 +92,16 @@ gulp.task('process-html-and-deploy', function() {
       'css': 'css/blog.css',
       'js': 'js/blog.js'
     }))
+    .pipe(plumber())
+    .pipe(minifyHTML({
+      quotes: true,
+      conditionals: true,
+      spare:true
+    }))
     .pipe(gulp.dest(webDir));
 });
 
-// minify sources
-gulp.task('deploy', ['min-js', 'min-css', 'min-img', 'process-html-and-deploy']);
+gulp.task('deploy', ['min', 'process-html']);
 
 // run html task by default
 gulp.task('default', ['deploy']);

@@ -3,3 +3,4 @@
 npm run fetch
 npm run clean
 npm run gulp
+npm run test

@@ -1,11 +1,12 @@
 language: java
-before_install:
+script: "gradle build -x www"
+jdk:
+  - oraclejdk8
+after_script:
   - nvm install 5.0
   - nvm use 5.0
   - cd www
   - npm install
+  - npm run gulp
   - npm run test
-  - cd ..
-script: "gradle build -x www"
-jdk:
-  - oraclejdk8
+

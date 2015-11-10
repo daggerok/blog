@@ -22,6 +22,16 @@ var gulp = require('gulp'),
   minifyJs = require('gulp-uglify'),
   minifyCss = require('csswring');
 
+// run development web server
+gulp.task('server', function() {
+  gulp.src('.')
+    .pipe(webserver({
+      port: 3000,
+      livereload: {
+        enable: true
+      }}));
+});
+
 // watch files into build 
 gulp.task('watch', ['default'], function() {
   gulp.watch(srcDir + anyJs, ['min-js']);
@@ -30,17 +40,6 @@ gulp.task('watch', ['default'], function() {
   gulp.watch(htmlFiles, ['process-html']);
   // also start live reload
   gulp.start('server');
-});
-
-// start webserver
-gulp.task('server', function() {
-  gulp.src(srcDir)
-    .pipe(webserver({
-      port: 3000,
-      livereload: {
-        enable: true
-      }
-    }));
 });
 
 /* BUILD */

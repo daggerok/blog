@@ -80,7 +80,7 @@
     - replace html parts and minify:
         
         $ gulp process-html # npm run gulp html
-    - watching sources and process compile errors with plumber, plus doing it with livereload
+    - watching sources and process compile errors with plumber, plus doing it with livereload: http://localhost:3000/src/
         
         $ gulp watch # npm run watch
     - starting development web server:

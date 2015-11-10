@@ -14,8 +14,4 @@ before_install:
   - npm run gulp
   - npm test
   - cd ../
-#after_script:
-#  - cd www/
-#  - npm install
-#  - node_modules/karma/bin/karma start www/test/unit.conf.js
 

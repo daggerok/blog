@@ -26,7 +26,7 @@ gulp.task('watch', ['default'], function() {
   gulp.watch(srcDir + anyJs, ['min-js']);
   gulp.watch(srcDir + anyCss, ['min-css']);
   gulp.watch(images, ['min-img']);
-  gulp.watch(htmlFiles, ['html']);
+  gulp.watch(htmlFiles, ['process-html']);
 });
 
 /* BUILD */

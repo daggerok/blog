@@ -56,7 +56,7 @@
     
 ### What is front-end? ###
 
-* html5/css/js blog skeleton with npm and gulp 
+* html5/css/js blog skeleton with npm, gulp and karma-jasmine unit tests
 * How to build
     - shell-scripts www/build.{sh,bat} and gradle wrapper
     
@@ -68,13 +68,18 @@
     - gulp
         
         $ gulp
+* How to test? Test will handle during the gradle build, or:
+    
+    $ npm test # or:
+    $ npm gulp test # or:
+    $ node_modules/karma/bin/karma start test/karma.conf.js
 * What gulp does?
     - combine/minify js, css, images
         
         $ gulp min # npm run gulp min
-    - replace html parts
+    - replace html parts and minify:
         
-        $ gulp html # npm run gulp html
+        $ gulp process-html # npm run gulp html
     - watching sources and process compile errors with plumber
         
         $ gulp watch # npm run watch

@@ -80,10 +80,13 @@
     - replace html parts and minify:
         
         $ gulp process-html # npm run gulp html
-    - watching sources and process compile errors with plumber
+    - watching sources and process compile errors with plumber, plus doing it with livereload
         
         $ gulp watch # npm run watch
-
+    - starting development web server:
+        
+        $ gulp server # or
+        $ npm start # or npm run start
 ### Who do I talk to? :) ###
 
 daggerok@gmail.com

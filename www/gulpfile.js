@@ -15,6 +15,7 @@ var gulp = require('gulp'),
   combine = require('gulp-concat'),
   plumber = require('gulp-plumber'),
   postcss = require('gulp-postcss'),
+  webserver = require('gulp-webserver'),
   replace = require('gulp-html-replace'),
   minifyHTML = require('gulp-minify-html'),
   minifyImg = require('gulp-imagemin'),
@@ -27,6 +28,19 @@ gulp.task('watch', ['default'], function() {
   gulp.watch(srcDir + anyCss, ['min-css']);
   gulp.watch(images, ['min-img']);
   gulp.watch(htmlFiles, ['process-html']);
+  // also start live reload
+  gulp.start('server');
+});
+
+// start webserver
+gulp.task('server', function() {
+  gulp.src(srcDir)
+    .pipe(webserver({
+      port: 3000,
+      livereload: {
+        enable: true
+      }
+    }));
 });
 
 /* BUILD */

@@ -1,11 +1,11 @@
 **/.gradle/
 **/.idea/
 **/build/
+**/gradle/
 **/node_modules/
 **/out/
 **/.DS_Store
+**/gradlew*
 **/*.iml
-**/*.log
 src/main/resources/public/
 **/*.log
-www/karma-test-report.xml

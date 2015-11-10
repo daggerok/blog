@@ -30,14 +30,14 @@ repositories {
 }
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter",
-            "org.springframework.boot:spring-boot-starter-web",
-            "org.springframework.boot:spring-boot-starter-hateoas",
-            "org.springframework.boot:spring-boot-starter-data-rest",
-            "org.springframework.boot:spring-boot-starter-data-jpa",
+    compile "org.springframework.boot:spring-boot-starter:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-hateoas:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}",
             // spring boot metrics and maintain
-            "org.springframework.boot:spring-boot-starter-actuator",
-            "org.springframework.boot:spring-boot-starter-remote-shell",
+            "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-remote-shell:${springBootVersion}",
             // code gen
             "org.projectlombok:lombok:1.16.6",
             // guava cache
@@ -46,9 +46,9 @@ dependencies {
             // java 8 jsr310 api for postDate
             "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.3"
 
-    runtime "com.h2database:h2"
+    runtime "com.h2database:h2:1.4.190"
 
-    testCompile "org.springframework.boot:spring-boot-starter-test",
+    testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
                 "org.springframework.restdocs:spring-restdocs-mockmvc:1.0.0.RC1"
 }
 

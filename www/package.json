@@ -12,14 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/daggerok/blog.git"
+    "url": "git+https://github.com/daggerok/blog.git"
   },
   "keywords": [
-    "blog"
+    "blog",
+    "fullstack"
   ],
   "author": "Maksim Kostromin",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/daggerok/blog#readme",
+  "homepage": "https://github.com/daggerok/blog#readme",
   "dependencies": {
     "angular": "^1.4.7",
     "normalize.css": "^3.0.3"

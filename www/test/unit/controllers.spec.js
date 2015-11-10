@@ -6,6 +6,6 @@
 
 describe('Testing blog controllers', function() {
   it("and has a positive case", function() {
-    expect(true).toBe(true);
+    expect(true).toBe(false);
   });
 });

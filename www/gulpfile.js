@@ -42,8 +42,6 @@ gulp.task('watch', ['default'], function() {
   gulp.start('server');
 });
 
-/* BUILD */
-
 // clean build dir
 gulp.task('clean', function() {
   return gulp

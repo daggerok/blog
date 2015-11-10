@@ -31,10 +31,10 @@
 * anyway, i've added .travis.yml for build: [![build](https://api.travis-ci.org/daggerok/blog.svg?branch=master)](https://api.travis-ci.org/daggerok/blog.svg?branch=master)
 
 ### What is back-end? ###
-1. pure java/spring-boot application on gradle
-2. hateoas data-rest
-3. default db request caching with guava
-4. flexible, maintainable and pretty server-side on steroids :) 
+1. pure java/spring-boot application on gradle, travis-ci
+2. spring-data, data-rest repositories and HATEOAS
+3. default db request caching with spring caching and guava
+4. flexible, configurable, maintainable and supper-pretty server-side on steroids :) 
 
 * How to test
     - what do we have? index works, okay...
@@ -55,8 +55,12 @@
     - back-end support and develop very easy :)
     
 ### What is front-end? ###
+1. node package namager 
+2. gulp developemnt: watching sources with livereloading in the browser
+3. html5/css/js blog skeleton (angular/bootstrap app)
+4. and karma-jasmine unit tests, travis-ci
 
-* html5/css/js blog skeleton with npm, gulp and karma-jasmine unit tests
+
 * How to build
     - shell-scripts www/build.{sh,bat} and gradle wrapper
     

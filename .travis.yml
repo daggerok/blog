@@ -14,8 +14,9 @@ before_install:
 #  - npm run gulp
 #  - npm test
 #  - cd ../
-script: gradle build
 cache:
   directories:
     - $HOME/.gradle/cache
     - www/node_modules
+:
+script: gradle build --info

@@ -8,7 +8,7 @@
     "clean": "gulp clean",
     "gulp": "gulp",
     "watch": "gulp watch",
-    "test": "node_modules/karma/bin/karma start test/karma.conf.js --single-run"
+    "test": "node_modules/karma/bin/karma start test/unit.conf.js"
   },
   "repository": {
     "type": "git",

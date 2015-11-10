@@ -1,12 +1,18 @@
 language: java
-script: "gradle build -x www"
-jdk:
-  - oraclejdk8
-after_script:
+before_script:
   - nvm install 5.0
   - nvm use 5.0
-  - cd www
-  - npm install
-  - npm run gulp
-  - npm run test
+  - export DISPLAY=:99.0 
+  - sh -e /etc/init.d/xvfb start
+script:
+  - gradle build
+jdk:
+  - oraclejdk8
+#before_script:
+#  - cd www
+#  - npm install
+#  - npm run gulp
+#  - export DISPLAY=:99.0
+#  - sh -e /etc/init.d/xvfb start
+#  - npm run test
 

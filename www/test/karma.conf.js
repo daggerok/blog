@@ -8,11 +8,11 @@ module.exports = function (config) {
       'src/js/**/*.js',
       'test/unit/**/*.js'
     ],
-    autoWatch: true,
+    autoWatch: false,
     frameworks: ['jasmine'],
-    //browsers: ['Chrome'],
+    browsers: ['Chrome'],
     plugins: [
-      //'karma-chrome-launcher',
+      'karma-chrome-launcher',
       'karma-jasmine'
     ],
     junitReporter: {

@@ -4,12 +4,14 @@ jdk:
 before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+install:
+  - true
 before_script:
   - nvm install 5.0
   - nvm use 5.0
 script:
   - gradle build
 after_script:
-  cd www/
+  - cd www/
   - ./node_modules/karma/bin/karma start test/unit.conf.js
 

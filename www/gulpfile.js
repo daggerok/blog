@@ -17,6 +17,7 @@ const gulp = require('gulp'),
   postcss = require('gulp-postcss'),
   webserver = require('gulp-webserver'),
   replace = require('gulp-html-replace'),
+  autoprefixer = require('gulp-autoprefixer'),
   minifyHTML = require('gulp-minify-html'),
   minifyImg = require('gulp-imagemin'),
   minifyJs = require('gulp-uglify'),
@@ -46,6 +47,7 @@ gulp.task('watch', ['default'], function() {
 gulp.task('clean', function() {
   gulp
     .src(webDir, {read: false})
+    .pipe(plumber())
     .pipe(clean({force: true}));
 });
 
@@ -70,16 +72,18 @@ gulp.task('min-js', function() {
 // combine and min css files into build dir
 gulp.task('min-css', function() {
   const styles = [
-    modulesDir + 'normalize.css/normalize.css',
+    modulesDir + 'bootstrap/dist/css/bootstrap.css',
     srcDir + mainCss
   ];
 
   gulp
     .src(styles)
     .pipe(plumber())
+    .pipe(autoprefixer())
+    .pipe(plumber())
     .pipe(combine(mainCss))
     .pipe(plumber())
-    .pipe(postcss([minifyCss]))
+    .pipe(postcss([minifyCss({removeAllComments: true})]))
     .pipe(gulp.dest(webDir));
 });
 

@@ -54,6 +54,8 @@ gulp.task('clean', function() {
 // combine and min js files into build dir
 gulp.task('scripts', function() {
   const scripts = [
+    modulesDir + 'jquery/dist/jquery.js',
+    modulesDir + 'bootstrap/dist/js/bootstrap.js',
     modulesDir + 'angular/angular.js',
     srcDir + mainJs
   ];

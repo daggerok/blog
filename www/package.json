@@ -4,7 +4,7 @@
   "description": "Blog",
   "main": "app/js/blog.js",
   "scripts": {
-    "fetch": "npm install --no-optional",
+    "fetch": "npm install",
     "clean": "gulp clean",
     "gulp": "gulp",
     "watch": "gulp watch",
@@ -26,6 +26,7 @@
   "dependencies": {
     "angular": "^1.4.7",
     "bootstrap": "^3.3.5",
+    "jquery": "^2.1.4",
     "normalize.css": "^3.0.3"
   },
   "devDependencies": {

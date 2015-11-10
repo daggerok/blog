@@ -24,7 +24,7 @@
 
         $ ./gradlew build run # or gradlew.bat build run
 * or without gradle wrapper (make jar not war:))
-        
+
         $ java -jar build/libs/blog-1.0.jar # after successful build
 *I'm pretty sure, that it should works :) it worked on my home mac os x and company's pc*
 
@@ -34,28 +34,28 @@
 1. pure java/spring-boot application on gradle, travis-ci
 2. spring-data, data-rest repositories and HATEOAS
 3. default db request caching with spring caching and guava
-4. flexible, configurable, maintainable and supper-pretty server-side on steroids :) 
+4. flexible, configurable, maintainable and supper-pretty server-side on steroids :)
 
 * How to test
     - what do we have? index works, okay...
-        
+
         $ curl -XGET localhost:8080
     - what's api?
-        
+
         $ curl -XGET localhost:8080/api/alps -H "Accept: application/x-spring-data-compact+json"
     - I see.. let's try:
-    
-        $ curl -XGET localhost:8080/api/post -H "Accept: application/x-spring-data-compact+json" 
+
+        $ curl -XGET localhost:8080/api/post -H "Accept: application/x-spring-data-compact+json"
     - I see... can I save something?
-     
-        $ curl -XPOST localhost:8080/api/posts -H "Content-Type: application/json" \ 
+
+        $ curl -XPOST localhost:8080/api/posts -H "Content-Type: application/json" \
             -d '{"author":"some name","subject":"some topic","body":"trololo..."}'
     - cool, does it really do one annotation? read more about @RepositoryRestResource and Spring at all
     - easy cache config, easy unit and integration testing, easy booting, easy config
     - back-end support and develop very easy :)
-    
+
 ### What is front-end? ###
-1. node package namager 
+1. node package namager
 2. gulp developemnt: watching sources with livereloading in the browser
 3. html5/css/js blog skeleton (angular/bootstrap app)
 4. and karma-jasmine unit tests, travis-ci
@@ -63,32 +63,33 @@
 
 * How to build
     - shell-scripts www/build.{sh,bat} and gradle wrapper
-    
+
         $ ./gradlew www # or gradlew.bat www
     - npm
-        
+
         $ cd www/
         $ npm run gulp
     - gulp
-        
+
         $ gulp
-* How to test? Test will handle during the gradle build, or:
-    
-    $ npm test # or:
-    $ npm gulp test # or:
-    $ node_modules/karma/bin/karma start test/karma.conf.js
+* How to test? Test will handle during the gradle build, build.sh, build.bat or:
+
+    $ node_modules/.bin/karma start test/karma.conf.js # or:
+    $ npm test # or: $ npm run test # for unix-like OS and Git-Bash shell
+    $ node_modules/.bin/karma.cmd start test/karma.conf.js @rem or:
+    $ npm run win-test @rem for windows-like OS command-line interpreter
 * What gulp does?
     - combine/minify js, css, images
-        
+
         $ gulp min # npm run gulp min
     - replace html parts and minify:
-        
+
         $ gulp process-html # npm run gulp html
     - watching sources and process compile errors with plumber, plus doing it with livereload: http://localhost:3000/src/
-        
+
         $ gulp watch # npm run watch
     - starting development web server:
-        
+
         $ gulp server # or
         $ npm start # or npm run start
 ### Who do I talk to? :) ###

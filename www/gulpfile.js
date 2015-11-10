@@ -1,6 +1,6 @@
 'use strict';
 
-var srcDir = 'src/',
+const srcDir = 'src/',
   anyJs = '**/*.js',
   anyCss = '**/*.css',
   mainJs = 'js/blog.js',
@@ -10,7 +10,7 @@ var srcDir = 'src/',
   modulesDir = 'node_modules/',
   webDir = '../src/main/resources/public/';
 
-var gulp = require('gulp'),
+const gulp = require('gulp'),
   clean = require('gulp-rimraf'),
   combine = require('gulp-concat'),
   plumber = require('gulp-plumber'),
@@ -44,14 +44,14 @@ gulp.task('watch', ['default'], function() {
 
 // clean build dir
 gulp.task('clean', function() {
-  return gulp
+  gulp
     .src(webDir, {read: false})
     .pipe(clean({force: true}));
 });
 
 // combine and min js files into build dir
 gulp.task('min-js', function() {
-  var scripts = [
+  const scripts = [
     modulesDir + 'angular/angular.js',
     srcDir + mainJs
   ];
@@ -69,7 +69,7 @@ gulp.task('min-js', function() {
 
 // combine and min css files into build dir
 gulp.task('min-css', function() {
-  var styles = [
+  const styles = [
     modulesDir + 'normalize.css/normalize.css',
     srcDir + mainCss
   ];
@@ -96,7 +96,7 @@ gulp.task('min', ['min-js', 'min-css', 'min-img']);
 
 // replace and min html into build dir
 gulp.task('process-html', function() {
-  return gulp
+  gulp
     .src(htmlFiles, {base: srcDir})
     .pipe(plumber())
     .pipe(replace({

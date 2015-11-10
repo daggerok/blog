@@ -4,11 +4,12 @@
   "description": "Blog",
   "main": "app/js/blog.js",
   "scripts": {
-    "fetch": "npm install",
+    "fetch": "npm install --no-optional",
     "clean": "gulp clean",
     "gulp": "gulp",
     "watch": "gulp watch",
-    "test": "node_modules/karma/bin/karma start test/karma.conf.js",
+    "test": "node_modules/.bin/karma start test/karma.conf.js",
+    "win-test": "node_modules/.bin/karma.cmd start test/karma.conf.js",
     "start": "gulp server"
   },
   "repository": {
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/daggerok/blog#readme",
   "dependencies": {
     "angular": "^1.4.7",
+    "bootstrap": "^3.3.5",
     "normalize.css": "^3.0.3"
   },
   "devDependencies": {

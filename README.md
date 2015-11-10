@@ -60,38 +60,37 @@
 3. html5/css/js blog skeleton (angular/bootstrap app)
 4. and karma-jasmine unit tests, travis-ci
 
-
 * How to build
-    - shell-scripts www/build.{sh,bat} and gradle wrapper
+    - gradle:
 
-        $ ./gradlew www # or gradlew.bat www
-    - npm
+        $ gradle www # or gradle www
+    - shell/batch scripts:
 
-        $ cd www/
+        $ cd www/ && ./build.sh # nix systems
+        $ cd www && build.bat @rem windows systems
+    - npm:
+
         $ npm run gulp
-    - gulp
-
-        $ gulp
 * How to test? Test will handle during the gradle build, build.sh, build.bat or:
 
     $ node_modules/.bin/karma start test/karma.conf.js # or:
-    $ npm test # or: $ npm run test # for unix-like OS and Git-Bash shell
+    $ npm test # or $ npm run test # for unix-like OS and Git-Bash shell
     $ node_modules/.bin/karma.cmd start test/karma.conf.js @rem or:
     $ npm run win-test @rem for windows-like OS command-line interpreter
 * What gulp does?
-    - combine/minify js, css, images
+    - combine, minify scripts, ctyles, images and html files
 
-        $ gulp min # npm run gulp min
-    - replace html parts and minify:
-
-        $ gulp process-html # npm run gulp html
+        $ npm run gulp scripts
+        $ npm run gulp styles
+        $ $ npm run gulp images
+        $ npm run gulp htmls
+        $ npm run gulp deploy # does all previous tasks
     - watching sources and process compile errors with plumber, plus doing it with livereload: http://localhost:3000/src/
 
-        $ gulp watch # npm run watch
+        $ npm run watch
     - starting development web server:
 
-        $ gulp server # or
-        $ npm start # or npm run start
+        $ npm start # or $ npm run start
 ### Who do I talk to? :) ###
 
 daggerok@gmail.com

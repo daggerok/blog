@@ -35,10 +35,10 @@ gulp.task('server', function() {
 
 // watch files into build 
 gulp.task('watch', ['default'], function() {
-  gulp.watch(srcDir + anyJs, ['min-js']);
-  gulp.watch(srcDir + anyCss, ['min-css']);
-  gulp.watch(images, ['min-img']);
-  gulp.watch(htmlFiles, ['process-html']);
+  gulp.watch(srcDir + anyJs, ['scripts']);
+  gulp.watch(srcDir + anyCss, ['styles']);
+  gulp.watch(images, ['images']);
+  gulp.watch(htmlFiles, ['htmls']);
   // also start live reload
   gulp.start('server');
 });
@@ -52,7 +52,7 @@ gulp.task('clean', function() {
 });
 
 // combine and min js files into build dir
-gulp.task('min-js', function() {
+gulp.task('scripts', function() {
   const scripts = [
     modulesDir + 'angular/angular.js',
     srcDir + mainJs
@@ -70,7 +70,7 @@ gulp.task('min-js', function() {
 });
 
 // combine and min css files into build dir
-gulp.task('min-css', function() {
+gulp.task('styles', function() {
   const styles = [
     modulesDir + 'bootstrap/dist/css/bootstrap.css',
     srcDir + mainCss
@@ -88,7 +88,7 @@ gulp.task('min-css', function() {
 });
 
 // min images into build dir
-gulp.task('min-img', function() {
+gulp.task('images', function() {
   gulp
     .src(images, {base: srcDir})
     .pipe(plumber())
@@ -96,10 +96,8 @@ gulp.task('min-img', function() {
     .pipe(gulp.dest(webDir));
 });
 
-gulp.task('min', ['min-js', 'min-css', 'min-img']);
-
 // replace and min html into build dir
-gulp.task('process-html', function() {
+gulp.task('htmls', function() {
   gulp
     .src(htmlFiles, {base: srcDir})
     .pipe(plumber())
@@ -116,7 +114,7 @@ gulp.task('process-html', function() {
     .pipe(gulp.dest(webDir));
 });
 
-gulp.task('deploy', ['min', 'process-html']);
+gulp.task('deploy', ['scripts', 'styles', 'images', 'htmls']);
 
 // run html task by default
 gulp.task('default', ['deploy']);

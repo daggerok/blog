@@ -74,6 +74,7 @@ gulp.task('scripts', function() {
 // combine and min css files into build dir
 gulp.task('styles', function() {
   const styles = [
+    modulesDir + 'font-awesome/css/font-awesome.css',
     modulesDir + 'bootstrap/dist/css/bootstrap.css',
     srcDir + mainCss
   ];

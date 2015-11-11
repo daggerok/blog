@@ -7,9 +7,9 @@
     "fetch": "npm install",
     "clean": "gulp clean",
     "gulp": "gulp",
-    "watch": "gulp watch",
     "test": "node_modules/.bin/karma start test/karma.conf.js",
     "win-test": "node_modules/.bin/karma.cmd start test/karma.conf.js",
+    "watch": "gulp watch",
     "start": "gulp server"
   },
   "repository": {
@@ -21,7 +21,7 @@
     "fullstack"
   ],
   "author": "Maksim Kostromin",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/daggerok/blog#readme",
   "dependencies": {
     "angular": "^1.4.7",

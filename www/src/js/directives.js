@@ -1,24 +1,24 @@
 'use strict';
 
-angular.module('directives', [])
-  .directive('blogNav', function() {
+(function () {
+
+  function tag(url) {
     return {
       restrict: 'E',
-      templateUrl: '../html/blog-nav.html',
+      templateUrl: url,
       replace: true
-    }
-  })
-  .directive('blogMain', function() {
-    return {
-      restrict: 'E',
-      templateUrl: '../html/blog-main.html',
-      replace: true
-    }
-  })
-  .directive('blogFooter', function() {
-    return {
-      restrict: 'E',
-      templateUrl: '../html/blog-footer.html',
-      replace: true
-    }
-  });
+    };
+  }
+
+  angular.module('directives', [])
+    .directive('blogNav', function () {
+      return tag('../html/blog-nav.html')
+    })
+    .directive('blogMain', function () {
+      return tag('../html/blog-main.html')
+    })
+    .directive('blogFooter', function () {
+      return tag('../html/blog-footer.html')
+    });
+
+})();

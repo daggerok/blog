@@ -11,9 +11,12 @@ const srcDir = 'src/',
   webDir = '../src/main/resources/public/';
 
 const gulp = require('gulp'),
+  rm = require('gulp-rimraf'),
   combine = require('gulp-concat'),
   plumber = require('gulp-plumber'),
-  connect = require('gulp-connect');
+  connect = require('gulp-connect'),
+  compress = require('gulp-gzip'),
+  rename = require("gulp-rename");
 
 gulp.task('connect', function() { // livereoad 1
   connect.server({
@@ -38,7 +41,7 @@ gulp.task('clean', function() {
   return gulp
     .src([webDir], {read: false})
     .pipe(plumber())
-    .pipe(require('gulp-rimraf')({force: true}));
+    .pipe(rm({force: true}));
 });
 
 // vendors to libs/js
@@ -77,11 +80,9 @@ gulp.task('css-vendor', function() {
   return gulp.src([
     modulesDir + 'font-awesome/css/font-awesome.css',
     modulesDir + 'bootstrap/dist/css/bootstrap.css'
-  ]).pipe(gulp.dest(libs + 'css/'));
-});
-
-// combine and min css files into build dir
-gulp.task('styles', ['css-vendor'], function() {
+  ]).pipe(gulp.dest(libs + 'css/'))});
+// combine and min css files into build dir ?? ????????????
+gulp.task('uncompressed-styles', ['css-vendor'], function() {
   var styles = [
     libs + 'css/font-awesome.css',
     libs + 'css/bootstrap.css',
@@ -97,8 +98,36 @@ gulp.task('styles', ['css-vendor'], function() {
     .pipe(plumber())
     .pipe(require('gulp-postcss')([require('csswring')({removeAllComments: true})]))
     .pipe(gulp.dest(webDir))
-    .pipe(connect.reload()); // livereoad 3
-});
+    .pipe(connect.reload())}); // livereoad 3
+//rename according requirements
+gulp.task('rename-nogzip-styles', ['uncompressed-styles'], function() {
+  return gulp.src(webDir + mainCss)
+    .pipe(plumber())
+    .pipe(rename('blog.nogzip.css'))
+    .pipe(gulp.dest(webDir + 'css/'))});
+// compress full styles file
+gulp.task('compress-styles', ['rename-nogzip-styles'], function() {
+  return gulp.src(webDir + 'css/blog.nogzip.css')
+    .pipe(plumber())
+    .pipe(compress({
+      append: true,
+      extension: 'gz',
+      threshold: true,
+      gzipOptions: {
+        level: 9,
+        memLevel: 5
+      }}))
+    .pipe(gulp.dest(webDir + 'css/'))});
+// rename compressed file according requirements
+gulp.task('commpressed-to-styles', ['compress-styles'], function() {
+  return gulp.src(webDir + 'css/blog.nogzip.css.gz')
+    .pipe(plumber())
+    .pipe(rename(mainCss))
+    .pipe(gulp.dest(webDir))});
+// remove temp style file
+gulp.task('styles', ['commpressed-to-styles'], function() {
+  return gulp.src(webDir + 'css/blog.nogzip.css.gz')
+    .pipe(rm({force: true}))});
 
 // min images into build dir
 gulp.task('images', function() {

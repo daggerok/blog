@@ -3,10 +3,11 @@
 const srcDir = 'src/',
   anyJs = '**/*.js',
   anyCss = '**/*.css',
-  mainJs = 'js/blog.js',
-  mainCss = 'css/blog.css',
+  anyFonts = 'fonts/**/*.*',
   images = srcDir + 'img/**/*',
   htmlFiles = srcDir + '**/*.html',
+  mainJs = 'js/blog.js',
+  mainCss = 'css/blog.css',
   modulesDir = 'node_modules/',
   webDir = '../src/main/resources/public/';
 
@@ -57,7 +58,8 @@ gulp.task('scripts', function() {
     modulesDir + 'jquery/dist/jquery.js',
     modulesDir + 'bootstrap/dist/js/bootstrap.js',
     modulesDir + 'angular/angular.js',
-    srcDir + mainJs
+    srcDir + mainJs,
+    srcDir + 'js/directives.js'
   ];
 
   gulp
@@ -99,6 +101,18 @@ gulp.task('images', function() {
     .pipe(gulp.dest(webDir));
 });
 
+// copy fonts into build dir
+gulp.task('fonts', function() {
+  gulp
+    .src(modulesDir + 'font-awesome/' + anyFonts)
+    .pipe(gulp.dest(srcDir + 'fonts/'));
+
+  gulp
+    .src(srcDir + anyFonts, {base: srcDir})
+    .pipe(plumber())
+    .pipe(gulp.dest(webDir));
+});
+
 // replace and min html into build dir
 gulp.task('htmls', function() {
   gulp
@@ -117,7 +131,7 @@ gulp.task('htmls', function() {
     .pipe(gulp.dest(webDir));
 });
 
-gulp.task('deploy', ['scripts', 'styles', 'images', 'htmls']);
+gulp.task('deploy', ['scripts', 'styles', 'images', 'fonts', 'htmls']);
 
 // run html task by default
 gulp.task('default', ['deploy']);

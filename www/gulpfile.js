@@ -1,137 +1,151 @@
 'use strict';
 
 const srcDir = 'src/',
-  anyJs = '**/*.js',
-  anyCss = '**/*.css',
+  libs = srcDir + 'libs/',
+  mainJs = 'js/blog.js',
+  mainCss = 'css/blog.css',
   anyFonts = 'fonts/**/*.*',
   images = srcDir + 'img/**/*',
   htmlFiles = srcDir + '**/*.html',
-  mainJs = 'js/blog.js',
-  mainCss = 'css/blog.css',
   modulesDir = 'node_modules/',
   webDir = '../src/main/resources/public/';
 
 const gulp = require('gulp'),
-  clean = require('gulp-rimraf'),
   combine = require('gulp-concat'),
   plumber = require('gulp-plumber'),
-  postcss = require('gulp-postcss'),
-  webserver = require('gulp-webserver'),
-  replace = require('gulp-html-replace'),
-  autoprefixer = require('gulp-autoprefixer'),
-  minifyHTML = require('gulp-minify-html'),
-  minifyImg = require('gulp-imagemin'),
-  minifyJs = require('gulp-uglify'),
-  minifyCss = require('csswring');
+  connect = require('gulp-connect');
 
-// run development web server
-gulp.task('server', function() {
-  gulp.src('.')
-    .pipe(webserver({
-      port: 3000,
-      livereload: {
-        enable: true
-      }}));
+gulp.task('connect', function() { // livereoad 1
+  connect.server({
+    root: webDir,
+    livereload: true
+  });
 });
 
-// watch files into build 
-gulp.task('watch', ['default'], function() {
-  gulp.watch(srcDir + anyJs, ['scripts']);
-  gulp.watch(srcDir + anyCss, ['styles']);
+// run compiled sources
+gulp.task('serve', require('gulp-serve')([webDir]));
+
+// watch files into build
+gulp.task('watch', ['deploy', 'connect'], function() { // livereoad 2
+  gulp.watch(srcDir + 'js/**/*.js', ['scripts']);
+  gulp.watch(srcDir + 'css/**/*.css', ['styles']);
   gulp.watch(images, ['images']);
   gulp.watch(htmlFiles, ['htmls']);
-  // also start live reload
-  gulp.start('server');
 });
 
 // clean build dir
 gulp.task('clean', function() {
-  gulp
-    .src(webDir, {read: false})
+  return gulp
+    .src([webDir], {read: false})
     .pipe(plumber())
-    .pipe(clean({force: true}));
+    .pipe(require('gulp-rimraf')({force: true}));
+});
+
+// vendors to libs/js
+gulp.task('js-vendor', function() {
+  return gulp.src([
+    modulesDir + 'jquery/dist/jquery.js',
+    modulesDir + 'bootstrap/dist/js/bootstrap.js',
+    modulesDir + 'angular/angular.js'
+  ]).pipe(gulp.dest(libs + 'js/'));
 });
 
 // combine and min js files into build dir
-gulp.task('scripts', function() {
-  const scripts = [
-    modulesDir + 'jquery/dist/jquery.js',
-    modulesDir + 'bootstrap/dist/js/bootstrap.js',
-    modulesDir + 'angular/angular.js',
+gulp.task('scripts', ['js-vendor'], function() {
+  var scripts = [
+    libs + 'js/jquery.js',
+    libs + 'js/bootstrap.js',
+    libs + 'js/angular.js',
     srcDir + mainJs,
     srcDir + 'js/directives.js'
   ];
-
-  gulp
+  // zip all to mainJs
+  return gulp
     .src(scripts)
     .pipe(plumber())
     .pipe(combine(mainJs))
     .pipe(plumber())
-    .pipe(minifyJs())
+    .pipe(require('gulp-uglify')())
     // emitting errors without plumber:
     //.on('error', console.error.bind(console))
-    .pipe(gulp.dest(webDir));
+    .pipe(gulp.dest(webDir))
+    .pipe(connect.reload()); // livereoad 3
+});
+
+// vendors to libs/css
+gulp.task('css-vendor', function() {
+  return gulp.src([
+    modulesDir + 'font-awesome/css/font-awesome.css',
+    modulesDir + 'bootstrap/dist/css/bootstrap.css'
+  ]).pipe(gulp.dest(libs + 'css/'));
 });
 
 // combine and min css files into build dir
-gulp.task('styles', function() {
-  const styles = [
-    modulesDir + 'font-awesome/css/font-awesome.css',
-    modulesDir + 'bootstrap/dist/css/bootstrap.css',
+gulp.task('styles', ['css-vendor'], function() {
+  var styles = [
+    libs + 'css/font-awesome.css',
+    libs + 'css/bootstrap.css',
     srcDir + mainCss
   ];
-
-  gulp
+  // zip all to mainCss
+  return gulp
     .src(styles)
     .pipe(plumber())
-    .pipe(autoprefixer())
+    .pipe(require('gulp-autoprefixer')())
     .pipe(plumber())
     .pipe(combine(mainCss))
     .pipe(plumber())
-    .pipe(postcss([minifyCss({removeAllComments: true})]))
-    .pipe(gulp.dest(webDir));
+    .pipe(require('gulp-postcss')([require('csswring')({removeAllComments: true})]))
+    .pipe(gulp.dest(webDir))
+    .pipe(connect.reload()); // livereoad 3
 });
 
 // min images into build dir
 gulp.task('images', function() {
-  gulp
+  return gulp
     .src(images, {base: srcDir})
     .pipe(plumber())
-    .pipe(minifyImg())
-    .pipe(gulp.dest(webDir));
+    .pipe(require('gulp-imagemin')())
+    .pipe(gulp.dest(webDir))
+    .pipe(connect.reload()); // livereoad 3
+});
+
+// fonts vendor
+gulp.task('fonts-vendor', function() {
+  return gulp
+    .src(modulesDir + 'font-awesome/' + anyFonts)
+    .pipe(gulp.dest(srcDir + 'fonts/'));
 });
 
 // copy fonts into build dir
-gulp.task('fonts', function() {
-  gulp
-    .src(modulesDir + 'font-awesome/' + anyFonts)
-    .pipe(gulp.dest(srcDir + 'fonts/'));
-
-  gulp
+gulp.task('fonts', ['fonts-vendor'], function() {
+  return gulp
     .src(srcDir + anyFonts, {base: srcDir})
     .pipe(plumber())
-    .pipe(gulp.dest(webDir));
+    .pipe(gulp.dest(webDir))
+    .pipe(connect.reload()); // livereoad 3
 });
 
 // replace and min html into build dir
-gulp.task('htmls', function() {
-  gulp
+gulp.task('htmls', ['styles', 'scripts'], function() {
+  return gulp
     .src(htmlFiles, {base: srcDir})
     .pipe(plumber())
-    .pipe(replace({
+    .pipe(require('gulp-html-replace')({
       'css': 'css/blog.css',
       'js': 'js/blog.js'
     }))
     .pipe(plumber())
-    .pipe(minifyHTML({
+    .pipe(require('gulp-minify-html')({
       quotes: true,
       conditionals: true,
       spare:true
     }))
-    .pipe(gulp.dest(webDir));
+    .pipe(gulp.dest(webDir))
+    .pipe(connect.reload()); // livereoad 3
 });
 
-gulp.task('deploy', ['scripts', 'styles', 'images', 'fonts', 'htmls']);
+gulp.task('deploy', ['images', 'fonts', 'htmls']);
 
 // run html task by default
 gulp.task('default', ['deploy']);

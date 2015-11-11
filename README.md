@@ -85,12 +85,13 @@
         $ $ npm run gulp images
         $ npm run gulp htmls
         $ npm run gulp deploy # does all previous tasks
-    - watching sources and process compile errors with plumber, plus doing it with livereload: http://localhost:3000/src/
+    - watching sources and process compile errors with plumber, doing it in developer mode with livereload feature (without any browsers plugins or other middleware): http://localhost:8080
 
         $ npm run watch
-    - starting development web server:
+    - running build on http-serve:
 
         $ npm start # or $ npm run start
 ### Who do I talk to? :) ###
 
 daggerok@gmail.com
+

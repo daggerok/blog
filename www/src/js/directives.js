@@ -4,7 +4,7 @@ angular.module('directives', [])
   .directive('blogNav', function() {
     return {
       restrict: 'E',
-      templateUrl: 'html/blog-nav.html',
+      templateUrl: '../html/blog-nav.html',
       replace: true
     }
   })
@@ -18,7 +18,7 @@ angular.module('directives', [])
   .directive('blogFooter', function() {
     return {
       restrict: 'E',
-      templateUrl: 'html/blog-footer.html',
+      templateUrl: '../html/blog-footer.html',
       replace: true
     }
   });

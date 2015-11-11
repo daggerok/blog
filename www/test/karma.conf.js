@@ -13,9 +13,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/angular/angular.js',
-      'src/**/*.js',
-      'test/unit/**/*.spec.js'
+      'src/libs/js/jquery.js',
+      'src/libs/js/*.js',
+      'src/js/*.js',
+      'test/unit/*.spec.js'
     ],
 
     // list of files to exclude

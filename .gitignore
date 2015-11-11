@@ -3,9 +3,10 @@
 **/build/
 **/gradle/
 **/node_modules/
+**/www/src/libs/
 **/out/
 **/.DS_Store
 **/gradlew*
 **/*.iml
-src/main/resources/public/
+**/src/main/resources/public/
 **/*.log

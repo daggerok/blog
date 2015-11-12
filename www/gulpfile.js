@@ -130,8 +130,10 @@ gulp.task('htmls', ['styles', 'scripts'], function() {
     .src(htmlFiles, {base: srcDir})
     .pipe(plumber())
     .pipe(require('gulp-html-replace')({
-      'css': 'css/blog.css',
-      'js': 'js/blog.js'
+      //'css': 'css/blog.css',
+      //'js': 'js/blog.js'
+      'css': '<link type="text/css" rel="stylesheet" href="css/blog.css"/>',
+      'js': '<script type="text/javascript" src="js/blog.js"></script>'
     }))
     .pipe(plumber())
     .pipe(require('gulp-minify-html')({

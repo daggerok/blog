@@ -28,10 +28,7 @@ server:
   compression:
     enabled: true
     mime-types: application/json,text/css,text/html
-
-  tomcat:
-    compression: on
-    compressableMimeTypes: application/json,text/css,text/html
+    min-response-size: 512
 ---
 
 # config test profile:

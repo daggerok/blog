@@ -1,3 +1,7 @@
 'use strict';
 
-angular.module('blog', ['directives']);
+angular
+  .module('blog', [
+    'directives',
+    'controllers'
+  ]);

@@ -7,18 +7,20 @@
         <span class="icon-bar"></span>
       </button>
       <div class="navbar-header navbar-left">
-        <a class="navbar-brand" href="#">Maksim Kostormin blog</a>
+        <a class="navbar-brand" href="#">{{ "i18nHeadName" | translate }}</a>
       </div>
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
-          <li><a href="#?tag=it">IT</a></li>
-          <li><a href="#?tag=music">Music</a></li>
-          <li><a href="#?tag=photo">Photo</a></li>
-          <li><a href="#?tag=sport">Sport</a></li>
+          <li><a href="#/it"><i class="fa fa-laptop"/>&nbsp; {{ "i18nHeadIt" | translate }}</a></li>
+          <li><a href="#/music"><i class="fa fa-music"/>&nbsp; {{ "i18nHeadMusic" | translate }}</a></li>
+          <li><a href="#/photo"><i class="fa fa-picture-o"/>&nbsp; {{ "i18nHeadPhoto" | translate }}</a></li>
+          <li><a href="#/sport"><i class="fa fa-heartbeat"/>&nbsp; {{ "i18nHeadSport" | translate }}</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#?p=about">About</a></li>
-          <li><a href="#?p=contacts">Contacts</a></li>
+        <ul class="nav navbar-nav navbar-right" ng-controller="i18nController">
+          <li><a ng-click="changeLanguage('en')"><i class="fa fa-language"/>&nbsp; {{ "i18nHeadLangEn" | translate}}</a></li>
+          <li><a ng-click="changeLanguage('ru')"><i class="fa fa-language"/>&nbsp; {{ "i18nHeadLangRu" | translate}}</a></li>
+          <li><a href="#/about"><i class="fa fa-info"/>&nbsp; {{ "i18nHeadAbout" | translate }}</a></li>
+          <li><a href="#/contacts"><i class="fa fa-envelope-o"/>&nbsp; {{ "i18nContacts" | translate }}</a></li>
         </ul>
       </div>
     </div>

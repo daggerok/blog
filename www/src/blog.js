@@ -3,5 +3,7 @@
 angular
   .module('blog', [
     'directives',
-    'controllers'
+    'controllers',
+    'routes',
+    'i18n'
   ]);

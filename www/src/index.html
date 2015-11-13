@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="img/favicon.ico" rel="icon" type="image/x-icon"/>
-  <title>Blog</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico"/>
+  <title>{{ "i18nHeadName" | translate }}</title>
   <!-- build:css -->
-  <link href="libs/css/font-awesome.css" type="text/css" rel="stylesheet"/>
-  <link href="libs/css/bootstrap.css" type="text/css" rel="stylesheet"/>
-  <link href="css/blog.css" type="text/css" rel="stylesheet"/>
+  <link type="text/css" rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css"/>
+  <link type="text/css" rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <link type="text/css" rel="stylesheet" href="blog.css"/>
   <!-- endbuild -->
 </head>
 <body>
@@ -16,11 +16,12 @@
 <blog-main></blog-main>
 <blog-footer></blog-footer>
 <!-- build:js -->
-<script src="libs/js/jquery.js" type="javascript"></script>
-<script src="libs/js/bootstrap.js" type="javascript"></script>
-<script src="libs/js/angular.js" type="javascript"></script>
-<script src="js/blog.js" type="javascript"></script>
-<script src="js/directives.js" type="javascript"></script>
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+<script type="text/javascript" src="../node_modules/angular-route/angular-route.min.js"></script>
+<script type="text/javascript" src="../node_modules/angular-translate/dist/angular-translate.min.js"></script>
+<script type="text/javascript" src="blog.js"></script>
 <!-- endbuild -->
 </body>
 </html>

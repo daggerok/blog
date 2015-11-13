@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('directives', [
-  'blogNav',
-  'blogMain',
-  'blogFooter'
-]);
+angular
+  .module('directives', [
+    'blogNav',
+    'blogMain',
+    'blogFooter'
+  ]);

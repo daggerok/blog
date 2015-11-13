@@ -1,10 +1,9 @@
 <footer class="footer navbar navbar-inverse navbar-fixed-bottom">
   <div class="toTop">
     <a href="#main" onclick="$('html,body,main').animate({scrollTop:0},'slow');return false;">
-      <i class="fa fa-chevron-up"></i>
-    </a>
+      <i class="fa fa-chevron-up"></i></a>
   </div>
-  <button class="btn-link separator"><a href="#?p=contacts">Contacts</a></button>
+  <button class="btn-link separator"><a href="#?p=contacts">{{ "i18nContacts" | translate }}</a></button>
   <section>
     <a href="https://www.facebook.com/daggerok" target="_blank">
       <i class="fa fa-fw fa-lg fa-facebook"></i></a>
@@ -18,5 +17,7 @@
       <i class="fa fa-fw fa-lg fa-vk"></i></a>
   </section>
   <section class="line separator"></section>
-  <section>&copy; copyright 2015 developed by <a class="btn-link" href="#?p=contacts">daggerok</a></section>
+  <section><a class="btn-link" href="#/contacts">{{ "i18nFooterDaggerok" | translate }}</a>
+    &copy; 2015 {{ "i18nFooterCopyright" | translate }}
+  </section>
 </footer>

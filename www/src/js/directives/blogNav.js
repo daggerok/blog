@@ -5,7 +5,7 @@ angular
   .directive('blogNav', function() {
     return {
       restrict: 'E',
-      templateUrl: '../html/directives/blog-nav.html',
+      templateUrl: 'html/directives/blog-nav.html',
       replace: true
     }
   });

@@ -24,9 +24,11 @@ security:
 
 server:
   port: 8080
+
   compression:
     enabled: true
-    mime-types: text/html,text/css,application/json
+    mime-types: application/json,text/css,text/html
+    min-response-size: 128
 ---
 
 # config test profile:

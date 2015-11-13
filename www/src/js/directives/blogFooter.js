@@ -5,7 +5,7 @@ angular
   .directive('blogFooter', function() {
     return {
       restrict: 'E',
-      templateUrl: '../html/directives/blog-footer.html',
+      templateUrl: 'html/directives/blog-footer.html',
       replace: true
     }
   });

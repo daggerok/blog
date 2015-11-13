@@ -1,3 +1,6 @@
 'use strict';
 
-angular.module('controllers', []);
+angular
+  .module('controllers', [
+    'blogController'
+  ]);

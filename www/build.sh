@@ -1,6 +1,5 @@
 #!/bin/bash
 
-npm run fetch
-npm run clean
-npm run gulp
+npm run dependencies
+npm run deploy
 npm test

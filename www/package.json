@@ -4,12 +4,14 @@
   "description": "Blog",
   "main": "app/js/blog.js",
   "scripts": {
-    "fetch": "npm install",
+    "dependencies": "npm install --no-optional",
     "clean": "gulp clean",
-    "gulp": "gulp",
-    "watch": "gulp watch",
     "test": "node_modules/.bin/karma start test/karma.conf.js",
     "win-test": "node_modules/.bin/karma.cmd start test/karma.conf.js",
+    "gulp": "gulp",
+    "build": "gulp",
+    "deploy": "gulp clean && gulp build",
+    "dev": "gulp watch",
     "start": "gulp server"
   },
   "repository": {
@@ -21,10 +23,12 @@
     "fullstack"
   ],
   "author": "Maksim Kostromin",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/daggerok/blog#readme",
   "dependencies": {
     "angular": "^1.4.7",
+    "angular-route": "^1.4.7",
+    "angular-translate": "^2.8.1",
     "bootstrap": "^3.3.5",
     "font-awesome": "^4.4.0",
     "jquery": "^2.1.4"

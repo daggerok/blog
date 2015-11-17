@@ -49,7 +49,7 @@
     - I see... can I save something?
 
         $ curl -XPOST localhost:8080/api/posts -H "Content-Type: application/json" \
-            -d '{"author":"some name","subject":"some topic","body":"trololo..."}'
+            -d '{"user":"some name","subject":"some topic","body":"trololo..."}'
     - cool, does it really do one annotation? read more about @RepositoryRestResource and Spring at all
     - easy cache config, easy unit and integration testing, easy booting, easy config
     - back-end support and develop very easy :)

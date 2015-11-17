@@ -1,12 +1,14 @@
 buildscript {
     ext {
-        springBootVersion = "1.2.7.RELEASE"
+        springBootVersion = "1.3.0.RELEASE"
     }
     repositories {
         jcenter()
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}",
+                //"org.flywaydb:flyway-gradle-plugin:3.2.1",
+                "mysql:mysql-connector-java:5.1.36"
     }
 }
 
@@ -16,6 +18,7 @@ version "1.0.0"
 apply plugin: "java"
 apply plugin: "idea"
 apply plugin: "spring-boot"
+//apply plugin: "org.flywaydb.flyway"
 
 jar {
     baseName = "blog"
@@ -34,17 +37,15 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
             "org.springframework.boot:spring-boot-starter-hateoas:${springBootVersion}",
             "org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}",
-            "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}",
+            "de.flapdoodle.embed:de.flapdoodle.embed.mongo",
             // spring boot metrics and maintain
             "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}",
             "org.springframework.boot:spring-boot-starter-remote-shell:${springBootVersion}",
+            // java 8 jsr310 api for at
+            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.3",
             // code gen
-            "org.projectlombok:lombok:1.16.6",
-            // guava cache
-            "org.springframework:spring-context-support:4.2.2.RELEASE",
-            "com.google.guava:guava:18.0",
-            // java 8 jsr310 api for postDate
-            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.3"
+            "org.projectlombok:lombok:1.16.6"
 
     runtime "com.h2database:h2:1.4.190"
 
@@ -55,23 +56,18 @@ dependencies {
 import org.apache.tools.ant.taskdefs.condition.Os
 
 task www(type: Exec) {
-    def scriptName = "build"
-
-    println "starting npm install and www build..."
-
     workingDir "${project.projectDir}/www"
+    ignoreExitValue = false
 
+    def scriptName = "build"
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         commandLine "cmd", "/c", "${scriptName}.bat"
     } else {
         commandLine "./${scriptName}.sh"
     }
-    // print to console
-    standardOutput = new ByteArrayOutputStream()
-    // use npm.output() to get output
-    ext.output = { return standardOutput.toString() }
+    //standardOutput = new ByteArrayOutputStream()
+    //ext.output = { return standardOutput.toString() }
 
-    ignoreExitValue = false
 }
 
 build.dependsOn www

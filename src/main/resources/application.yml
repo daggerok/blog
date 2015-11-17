@@ -1,42 +1,47 @@
-# set active profile:
+app.zip.mimes: >
+  application/json,application/javascript,application/x-woff,application/xml,
+  application/xhtml+xml,application/xml-dtd,application/atom+xml,
+  image/gif,image/png,image/jpeg,image/pjpeg,image/svg+xml,
+  message/http,message/imdn+xml,message/partial,message/rfc822,
+  text/plain,text/css,text/html,text/json,text/xml,text/cmd,text/csv
+application:
+  name: blog
+server:
+  port: 8080
+  tomcat:
+    compression: 512
+    compressable-mime-types: ${app.zip.mimes}
+http:
+  gzip:
+    deflate-compression-level: 5
+    methods: GET,POST,PUT,DELETE
+    mime-types: ${app.zip.mimes}
+    min-gzip-size: 512
 spring:
-  profiles.active: default
+  profiles.active: dev
+  data:
+    rest:
+      base-path: /api
+      base-uri: /api
+    mongodb:
+      port: 0
+  datasource:
+    driver-class-name: com.mongodb.Mongo
+    name: ${application.name}
+    username: ${application.name}
+    password: ${application.name}
 ---
-
-# config default profile:
 spring:
   profiles: default
-
-  datasource:
-    url: jdbc:h2:~/.blog/db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-
-  jpa:
-    hibernate.dialect: org.hibernate.dialect.H2Dialect
-    hibernate.ddl-auto: create-drop
-    show-sql: true
-
-  data.rest:
-    base-uri: api
-
 security:
   basic:
     enabled: false
-
-server:
-  port: 8080
-
-  compression:
-    enabled: true
-    mime-types: application/json,text/css,text/html
-    min-response-size: 128
+logging:
+  level:
+    root: INFO
 ---
-
-# config test profile:
 spring:
-  profiles: test
-
-  datasource:
-    url: jdbc:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-
-server:
-  address: localhost
+  profiles: dev
+logging:
+  level:
+    root: INFO

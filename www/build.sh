@@ -1,5 +1,6 @@
 #!/bin/bash
 
 npm run dependencies
-npm run deploy
+npm run clean
+npm run gulp
 npm test

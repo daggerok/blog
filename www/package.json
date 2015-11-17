@@ -9,19 +9,13 @@
     "test": "node_modules/.bin/karma start test/karma.conf.js",
     "win-test": "node_modules/.bin/karma.cmd start test/karma.conf.js",
     "gulp": "gulp",
-    "build": "gulp",
-    "deploy": "gulp clean && gulp build",
     "dev": "gulp watch",
-    "start": "gulp server"
+    "start": "gulp serve"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/daggerok/blog.git"
   },
-  "keywords": [
-    "blog",
-    "fullstack"
-  ],
   "author": "Maksim Kostromin",
   "license": "MIT",
   "homepage": "https://github.com/daggerok/blog#readme",

@@ -1,47 +1,78 @@
-app.zip.mimes: >
-  application/json,application/javascript,application/x-woff,application/xml,
-  application/xhtml+xml,application/xml-dtd,application/atom+xml,
-  image/gif,image/png,image/jpeg,image/pjpeg,image/svg+xml,
-  message/http,message/imdn+xml,message/partial,message/rfc822,
-  text/plain,text/css,text/html,text/json,text/xml,text/cmd,text/csv
-application:
-  name: blog
+app:
+  gzip:
+    size: 512
+    types: >
+      application/json,application/javascript,application/x-woff,application/xml,
+      application/xhtml+xml,application/xml-dtd,application/atom+xml,
+      image/gif,image/png,image/jpeg,image/pjpeg,image/svg+xml,
+      message/http,message/imdn+xml,message/partial,message/rfc822,
+      text/plain,text/css,text/html,text/json,text/xml,text/cmd,text/csv
 server:
   port: 8080
+  compression:
+    enabled: true
+    min-response-size: ${app.gzip.size}
   tomcat:
-    compression: 512
-    compressable-mime-types: ${app.zip.mimes}
+    compression: ${app.gzip.size}
+    compressable-mime-types: ${app.gzip.types}
 http:
   gzip:
     deflate-compression-level: 5
     methods: GET,POST,PUT,DELETE
-    mime-types: ${app.zip.mimes}
-    min-gzip-size: 512
+    mime-types: ${app.gzip.types}
+    min-gzip-size: ${app.gzip.size}
+resources:
+  cachePeriod: 3600
+
+management:
+  context-path: /admin
+  address: 127.0.0.1
+  port: 8081
+  security:
+    enabled: false
+endpoints:
+  sensitive: false
+  enabled: true
+  shutdown:
+    sensitive: false
+    enabled: true
+
+logging:
+  level:
+    root: WARN
+  com.daggerok.blog: INFO
+  org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongo: INFO
+
 spring:
   profiles.active: dev
+  application:
+    name: blog
   data:
     rest:
       base-path: /api
       base-uri: /api
     mongodb:
       port: 0
+  mvc:
+    favicon:
+      enabled: false
   datasource:
     driver-class-name: com.mongodb.Mongo
     name: ${application.name}
     username: ${application.name}
     password: ${application.name}
----
-spring:
-  profiles: default
 security:
   basic:
     enabled: false
+---
+spring:
+  profiles: prod
 logging:
-  level:
-    root: INFO
+  path: /var/log
+
 ---
 spring:
   profiles: dev
-logging:
-  level:
-    root: INFO
+#logging:
+#  level:
+#    root: INFO

@@ -3,6 +3,7 @@ buildscript {
     repositories { jcenter() }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}",
+                  "org.gradle.api.plugins:gradle-heroku:0.9.6",
                   "mysql:mysql-connector-java:5.1.36"
     }
 }
@@ -59,6 +60,10 @@ task www(type: Exec) {
     } else {
         commandLine "bash", "-x", "${scriptName}.sh"
     }
+}
+
+heroku {
+    apiKey = "com.daggerok.blog"
 }
 
 build.dependsOn www

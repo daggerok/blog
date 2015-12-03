@@ -66,13 +66,13 @@ build.shouldRunAfter www
 www.shouldRunAfter clean
 
 // heroku:
-task wrapper(type: Wrapper) { gradleVersion = '2.0' }
+task wrapper(type: Wrapper) { gradleVersion = "2.6" }
 task stage(type: Copy, dependsOn: [clean, build]) {
     from jar.archivePath
     into project.rootDir
     rename {
-        'app.jar'
+        "app.jar"
     }
 }
 stage.mustRunAfter(clean)
-clean << { project.file('app.jar').delete() }
+clean << { project.file("app.jar").delete() }

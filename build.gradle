@@ -20,7 +20,7 @@ jar {
 }
 
 sourceCompatibility = 1.8
-targetCompatibility = sourceCompatibility
+//targetCompatibility = sourceCompatibility
 
 repositories { jcenter() }
 

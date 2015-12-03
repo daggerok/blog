@@ -2,9 +2,9 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "Blog",
-  "main": "app/js/blog.js",
+  "main": "src/blog.js",
   "scripts": {
-    "dependencies": "npm install --no-optional",
+    "dependencies": "npm install",
     "clean": "gulp clean",
     "test": "node_modules/.bin/karma start test/karma.conf.js",
     "win-test": "node_modules/.bin/karma.cmd start test/karma.conf.js",
@@ -18,10 +18,6 @@
     "type": "git",
     "url": "git+https://github.com/daggerok/blog.git"
   },
-  "keywords": [
-    "blog",
-    "fullstack"
-  ],
   "author": "Maksim Kostromin",
   "license": "MIT",
   "homepage": "https://github.com/daggerok/blog#readme",

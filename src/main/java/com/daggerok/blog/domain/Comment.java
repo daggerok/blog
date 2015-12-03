@@ -6,7 +6,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(exclude = {"id", "at"})
+@EqualsAndHashCode(callSuper = false)
 @RequiredArgsConstructor(staticName = "of")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment extends Doc {

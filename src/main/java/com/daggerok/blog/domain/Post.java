@@ -11,7 +11,7 @@ import java.util.TreeSet;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(exclude = {"id", "at"})
+@EqualsAndHashCode(callSuper = false)
 @RequiredArgsConstructor(staticName = "of")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(collection = "posts", language = "java")

@@ -61,9 +61,7 @@ task www(type: Exec) {
     }
 }
 
-task stage {
-    dependsOn build
-}
+task stage(dependsOn: "build")
 
 build.dependsOn www
 build.shouldRunAfter www

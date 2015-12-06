@@ -16,3 +16,10 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 script:
   - gradle build --info
+notifications:
+  email:
+    recipients:
+      - daggerok@gmail.com
+    on_failure: change # always
+    on_success: never
+

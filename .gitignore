@@ -2,7 +2,7 @@
 **/.idea/
 **/build/
 **/node_modules/
-**/www/src/libs/
+**/www/**/*.js
 **/out/
 **/.DS_Store
 **/*.iml

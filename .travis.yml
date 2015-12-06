@@ -15,4 +15,11 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 script:
-  - gradle build --info
+  - gradle build
+notifications:
+  email:
+    recipients:
+      - daggerok@gmail.com
+    on_failure: change # always
+    on_success: never
+

@@ -2,27 +2,46 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "Blog",
-  "main": "src/blog.js",
   "scripts": {
-    "dependencies": "npm install",
+    "gulp": "gulp --require coffee-script/register",
     "clean": "gulp clean",
-    "test": "node_modules/.bin/karma start test/karma.conf.js",
-    "win-test": "node_modules/.bin/karma.cmd start test/karma.conf.js",
-    "gulp": "gulp",
-    "build": "gulp",
-    "deploy": "gulp clean && gulp build",
-    "dev": "gulp watch",
-    "start": "gulp server"
+    "coffee": "npm run gulp coffee",
+
+    "postinstall": "npm run coffee",
+
+    "pretest": "npm install",
+    "test": "npm run gulp test",
+
+    "precli-test": "npm install",
+    "cli-test": "node_modules/.bin/karma start test/karma.conf.js",
+
+    "precoffee-test": "npm install",
+    "coffee-test": "node_modules/.bin/karma start test/karma-coffee.conf.coffee",
+
+    "precli-win-test": "npm install",
+    "cli-win-test": "node_modules/.bin/karma.cmd start test/karma.conf.js",
+
+    "prebuild": "npm install",
+    "build": "npm run gulp",
+
+    "predeploy": "npm run clean",
+    "deploy": "npm run build",
+
+    "prestart": "npm install",
+    "start": "npm run gulp watch",
+
+    "preserve": "npm install",
+    "serve": "npm run gulp server"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/daggerok/blog.git"
   },
   "author": "Maksim Kostromin",
-  "license": "MIT",
+  "license": "ISC",
   "homepage": "https://github.com/daggerok/blog#readme",
   "dependencies": {
-    "angular": "^1.4.7",
+    "angular": "^1.4.8",
     "angular-route": "^1.4.7",
     "angular-translate": "^2.8.1",
     "bootstrap": "^3.3.5",
@@ -30,9 +49,11 @@
     "jquery": "^2.1.4"
   },
   "devDependencies": {
+    "coffee-script": "^1.10.0",
     "csswring": "^4.0.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-coffee": "^2.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.2.0",
     "gulp-html-replace": "^1.5.4",
@@ -43,9 +64,20 @@
     "gulp-rimraf": "^0.2.0",
     "gulp-serve": "^1.2.0",
     "gulp-uglify": "^1.4.2",
-    "jasmine-core": "^2.3.4",
+    "angular-mocks": "^1.4.8",
     "karma": "^0.13.15",
-    "karma-chrome-launcher": "^0.2.1",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-ie-launcher": "^0.2.0",
+    "karma-opera-launcher": "^0.3.0",
+    "karma-safari-launcher": "^0.1.1",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-coffee-preprocessor": "^0.3.0",
+    "karma-junit-reporter": "^0.3.8",
+    "karma-jasmine": "^0.3.6",
+    "phantomjs": "^1.9.19",
+    "jasmine-core": "^2.3.4",
+    "jasmine": "^2.4.1",
     "karma-jasmine": "^0.3.6"
   }
 }

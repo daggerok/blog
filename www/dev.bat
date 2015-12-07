@@ -1,4 +1,4 @@
 @echo off
 
-call npm run clean
-call npm run dev
+call npm run build
+call npm start

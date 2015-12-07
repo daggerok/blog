@@ -1,5 +1,4 @@
 #!/bin/bash
 
-npm run dependencies
-npm run deploy
+npm run build
 npm test

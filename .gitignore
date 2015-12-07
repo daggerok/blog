@@ -1,12 +1,12 @@
 **/.gradle/
 **/.idea/
 **/build/
-**/gradle/
+**/gradle*
+**/.idea/
 **/node_modules/
-**/www/src/libs/
+**/www/**/*.js
 **/out/
 **/.DS_Store
-**/gradlew*
 **/*.iml
 **/src/main/resources/public/
 **/*.log

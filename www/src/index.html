@@ -2,13 +2,15 @@
 <html lang="en-RU" ng-app="blog">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="img/favicon.ico"/>
   <title>{{ "i18nHeadName" | translate }}</title>
   <!-- build:css -->
-  <link type="text/css" rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css"/>
-  <link type="text/css" rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
-  <link type="text/css" rel="stylesheet" href="blog.css"/>
+  <!-- vendors -->
+  <link rel="stylesheet" href="font-awesome.css">
+  <link rel="stylesheet" href="bootstrap.css">
+  <!-- main -->
+  <link rel="stylesheet" href="blog.css">
   <!-- endbuild -->
 </head>
 <body>
@@ -16,12 +18,25 @@
 <blog-main></blog-main>
 <blog-footer></blog-footer>
 <!-- build:js -->
-<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
-<script type="text/javascript" src="../node_modules/angular-route/angular-route.min.js"></script>
-<script type="text/javascript" src="../node_modules/angular-translate/dist/angular-translate.min.js"></script>
-<script type="text/javascript" src="blog.js"></script>
+<!-- vendors -->
+<script src="jquery.js"></script>
+<script src="bootstrap.js"></script>
+<script src="angular.js"></script>
+<script src="angular-route.js"></script>
+<script src="angular-translate.js"></script>
+<!-- app -->
+<script src="scripts/controllers/blogController.js"></script>
+<script src="scripts/controllers.js"></script>
+<script src="scripts/directives/blogNav.js"></script>
+<script src="scripts/directives/blogMain.js"></script>
+<script src="scripts/directives/blogFooter.js"></script>
+<script src="scripts/directives.js"></script>
+<script src="scripts/i18n/config.js"></script>
+<script src="scripts/i18n/controller.js"></script>
+<script src="scripts/routes/routes.js"></script>
+<script src="scripts/i18n.js"></script>
+<!-- main -->
+<script src="blog.js"></script>
 <!-- endbuild -->
 </body>
 </html>

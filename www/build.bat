@@ -1,5 +1,4 @@
 @echo off
 
-call npm run dependencies
-call npm run deploy
-call npm run win-test
+call npm run build
+call npm run test

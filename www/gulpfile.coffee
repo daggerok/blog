@@ -1,52 +1,52 @@
 'use strict'
 
-gulp             = require 'gulp'
-serve            = require 'gulp-serve'
-remove           = require 'gulp-rimraf'
-plumber          = require 'gulp-plumber'
-coffee           = require 'gulp-coffee'
-concat           = require 'gulp-concat'
-uglify           = require 'gulp-uglify'
-connect          = require 'gulp-connect'
-prefixer         = require 'gulp-autoprefixer'
-minifycss        = require 'gulp-minify-css'
-imagemin         = require 'gulp-imagemin'
-minifyhtml       = require 'gulp-minify-html'
-replace          = require 'gulp-html-replace'
-sourcemaps       = require 'gulp-sourcemaps'
-{Server}         = require 'karma'
+gulp            = require 'gulp'
+serve           = require 'gulp-serve'
+remove          = require 'gulp-rimraf'
+plumber         = require 'gulp-plumber'
+coffee          = require 'gulp-coffee'
+concat          = require 'gulp-concat'
+uglify          = require 'gulp-uglify'
+connect         = require 'gulp-connect'
+prefixer        = require 'gulp-autoprefixer'
+minifycss       = require 'gulp-minify-css'
+imagemin        = require 'gulp-imagemin'
+minifyhtml      = require 'gulp-minify-html'
+replace         = require 'gulp-html-replace'
+sourcemaps      = require 'gulp-sourcemaps'
+{Server}        = require 'karma'
 
-srcDir           = 'src/'
-testDir          = 'test/'
-mapsDir          = 'debug'
-anyFiles         = '**/*.*'
-mainJs           = 'blog.js'
-jsFiles          = '**/*.js'
-mainCss          = 'blog.css'
-coffeeFiles      = '**/*.coffee'
-modulesDir       = 'node_modules/'
-anyTestJs        = "#{testDir}**/*.js"
-anyFonts         = "fonts/#{anyFiles}"
-htmls            = "#{srcDir}**/*.html"
-images           = "#{srcDir}img/#{anyFiles}"
-webDir           = '../src/main/resources/public/'
-fontsDir         = "#{webDir}fonts/"
-karmaJsConfig    = "#{__dirname}/#{testDir}karma.conf.js"
-karmaCoffeConfig = "#{__dirname}/#{testDir}karma.conf.js"
-fonts            = "#{modulesDir}font-awesome/#{anyFonts}"
-genJsSrc         = srcDir + jsFiles
-genJsTest        = testDir + jsFiles
-javascripts      = [ "#{modulesDir}jquery/dist/jquery.js"
-                     "#{modulesDir}bootstrap/dist/js/bootstrap.js"
-                     "#{modulesDir}angular/angular.js"
-                     "#{modulesDir}angular-route/angular-route.js"
-                     "#{modulesDir}angular-translate/dist/angular-translate.js"
-                     genJsSrc ]
-stylesheets      = [ "#{modulesDir}font-awesome/css/font-awesome.css"
-                     "#{modulesDir}bootstrap/dist/css/bootstrap.css"
-                     srcDir + mainCss ]
-genJs            = [ genJsSrc
-                     genJsTest ]
+srcDir          = 'src/'
+testDir         = 'test/'
+mapsDir         = 'debug'
+anyFiles        = '**/*.*'
+mainJs          = 'blog.js'
+jsFiles         = '**/*.js'
+mainCss         = 'blog.css'
+coffeeFiles     = '**/*.coffee'
+modulesDir      = 'node_modules/'
+anyTestJs       = "#{testDir}**/*.js"
+anyFonts        = "fonts/#{anyFiles}"
+htmls           = "#{srcDir}**/*.html"
+images          = "#{srcDir}img/#{anyFiles}"
+webDir          = '../src/main/resources/public/'
+fontsDir        = "#{webDir}fonts/"
+karmaJsConf     = "#{__dirname}/#{testDir}karma.conf.js"
+karmaCoffeeConf = "#{__dirname}/#{testDir}karma-coffee.conf.coffee"
+fonts           = "#{modulesDir}font-awesome/#{anyFonts}"
+genJsSrc        = srcDir + jsFiles
+genJsTest       = testDir + jsFiles
+javascripts     = [ "#{modulesDir}jquery/dist/jquery.js"
+                    "#{modulesDir}bootstrap/dist/js/bootstrap.js"
+                    "#{modulesDir}angular/angular.js"
+                    "#{modulesDir}angular-route/angular-route.js"
+                    "#{modulesDir}angular-translate/dist/angular-translate.js"
+                    genJsSrc ]
+stylesheets     = [ "#{modulesDir}font-awesome/css/font-awesome.css"
+                    "#{modulesDir}bootstrap/dist/css/bootstrap.css"
+                    srcDir + mainCss ]
+genJs           = [ genJsSrc
+                    genJsTest ]
 
 # clean build dir
 gulp.task 'clean', ->
@@ -173,14 +173,14 @@ gulp.task 'dev', [
 
 gulp.task 'test-js', (done) ->
   new Server(
-      configFile: karmaJsConfig
+      configFile: karmaJsConf
       singleRun: true,
     done)
   .start()
 
 gulp.task 'test-coffee', (done) ->
   new Server(
-    configFile: karmaCoffeConfig
+    configFile: karmaCoffeeConf
     singleRun: true,
     done)
   .start()

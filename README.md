@@ -1,4 +1,4 @@
-# Java back-end + JavaScript front-end # [![build](https://api.travis-ci.org/daggerok/blog.svg?branch=mongo-coffee)](https://api.travis-ci.org/daggerok/blog.svg?branch=mongo-coffee)
+# Java back-end + JavaScript front-end # [![build](https://api.travis-ci.org/daggerok/blog.svg?branch=master)](https://api.travis-ci.org/daggerok/blog.svg?branch=master)
 
 ### What is this repository for? ###
 

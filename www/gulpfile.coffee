@@ -13,26 +13,29 @@ minifycss        = require 'gulp-minify-css'
 imagemin         = require 'gulp-imagemin'
 minifyhtml       = require 'gulp-minify-html'
 replace          = require 'gulp-html-replace'
-srcmaps          = require 'gulp-sourcemaps'
+sourcemaps       = require 'gulp-sourcemaps'
 {Server}         = require 'karma'
 
 srcDir           = 'src/'
 testDir          = 'test/'
 mapsDir          = 'debug'
+anyFiles         = '**/*.*'
 mainJs           = 'blog.js'
 jsFiles          = '**/*.js'
 mainCss          = 'blog.css'
 coffeeFiles      = '**/*.coffee'
-anyFiles         = '**/*.*'
-anyFonts         = "fonts/#{anyFiles}"
 modulesDir       = 'node_modules/'
 anyTestJs        = "#{testDir}**/*.js"
-images           = "#{srcDir}img/#{anyFiles}"
+anyFonts         = "fonts/#{anyFiles}"
 htmls            = "#{srcDir}**/*.html"
+images           = "#{srcDir}img/#{anyFiles}"
 webDir           = '../src/main/resources/public/'
+fontsDir         = "#{webDir}fonts/"
 karmaJsConfig    = "#{__dirname}/#{testDir}karma.conf.js"
 karmaCoffeConfig = "#{__dirname}/#{testDir}karma.conf.js"
+fonts            = "#{modulesDir}font-awesome/#{anyFonts}"
 genJsSrc         = srcDir + jsFiles
+genJsTest        = testDir + jsFiles
 javascripts      = [ "#{modulesDir}jquery/dist/jquery.js"
                      "#{modulesDir}bootstrap/dist/js/bootstrap.js"
                      "#{modulesDir}angular/angular.js"
@@ -42,15 +45,12 @@ javascripts      = [ "#{modulesDir}jquery/dist/jquery.js"
 stylesheets      = [ "#{modulesDir}font-awesome/css/font-awesome.css"
                      "#{modulesDir}bootstrap/dist/css/bootstrap.css"
                      srcDir + mainCss ]
-fonts            = "#{modulesDir}font-awesome/#{anyFonts}"
-fontsDir         = "#{webDir}fonts/"
-genJsTest        = testDir + jsFiles
 genJs            = [ genJsSrc
                      genJsTest ]
 
 # clean build dir
 gulp.task 'clean', ->
-  gulp.src [webDir], read: false
+  gulp.src webDir, read: false
     .pipe remove force: true
 
 # clean generated src js
@@ -90,28 +90,21 @@ gulp.task 'coffee', [
 # combine and min js files into build dir
 gulp.task 'js', ->
   gulp.src javascripts
-    .pipe srcmaps.init()
-    .pipe plumber()
+    #.pipe sourcemaps.init()
     .pipe concat mainJs
-    .pipe plumber()
     .pipe uglify()
-    .pipe srcmaps.write mapsDir
+    #.pipe sourcemaps.write mapsDir
     .pipe gulp.dest webDir
-    .pipe connect.reload()
 
 # combine and min css files into build dir
 gulp.task 'css', ->
   gulp.src stylesheets
-    .pipe srcmaps.init()
-    .pipe plumber()
+    #.pipe sourcemaps.init()
     .pipe prefixer browsers: ['last 2 versions']
-    .pipe plumber()
     .pipe concat mainCss
-    .pipe plumber()
     .pipe minifycss compatibility: 'ie8'
-    .pipe srcmaps.write mapsDir
+    #.pipe sourcemaps.write mapsDir
     .pipe gulp.dest webDir
-    .pipe connect.reload()
 
 # min images into build dir
 gulp.task 'img', ->
@@ -124,41 +117,59 @@ gulp.task 'img', ->
 # copy fonts into build dir
 gulp.task 'fonts', ->
   gulp.src fonts
-    .pipe plumber()
     .pipe gulp.dest fontsDir
     .pipe connect.reload()
 
 # replace and min html into build dir
 gulp.task 'html', ->
   gulp.src htmls, base: srcDir
-    .pipe plumber()
     .pipe replace
       'css': '<link rel="stylesheet" href="blog.css">'
       'js': '<script src="blog.js"></script>'
-    .pipe plumber()
     .pipe minifyhtml
       conditionals: true
       quotes: true
       spare: true
     .pipe gulp.dest webDir
-    .pipe connect.reload()
 
 gulp.task 'build', [
   'coffee-src'
-  'css'
-  'img'
   'fonts'
   'html'
+  'img'
+  'css'
   'js'
 ]
 
-gulp.task 'connect', ->
-  connect.server
-    root: webDir
-    livereload: true
+# run html task by default
+gulp.task 'default', ['build']
 
 # run compiled sources
 gulp.task 'serve', serve [webDir]
+
+gulp.task 'dev-js', ->
+  gulp.src javascripts
+    .pipe gulp.dest webDir
+    .pipe connect.reload()
+
+gulp.task 'dev-css', ->
+  gulp.src stylesheets
+    .pipe gulp.dest webDir
+    .pipe connect.reload()
+
+gulp.task 'dev-html', ->
+  gulp.src htmls, base: srcDir
+    .pipe gulp.dest webDir
+    .pipe connect.reload()
+
+gulp.task 'dev', [
+  'coffee-src'
+  'fonts'
+  'img'
+  'dev-html'
+  'dev-css'
+  'dev-js'
+]
 
 gulp.task 'test-js', (done) ->
   new Server(
@@ -179,27 +190,32 @@ gulp.task 'test', [
   'test-js'
 ]
 
+gulp.task 'connect', ->
+  connect.server
+    root: webDir
+    livereload: true
+
 # watch files into build
 gulp.task 'watch', [
-  'build'
   'connect'
+  'dev'
 ], ->
-  gulp.watch srcDir + mainCss, ['css']
-  gulp.watch htmls, ['html']
+  gulp.watch stylesheets, ['dev-css']
+  gulp.watch htmls, ['dev-html']
+  gulp.watch fontsDir, ['fonts']
   gulp.watch images, ['img']
-  gulp.watch genJsSrc, ['js']
   gulp.watch srcDir + coffeeFiles, [
     'test-coffee'
     'coffee-src'
+    'dev-js'
   ]
   gulp.watch testDir + coffeeFiles, [
     'test-coffee'
     'coffee-test'
+    'dev-js'
   ]
   gulp.watch [
     webDir
+    genJsSrc
     genJsTest
   ], ['test-js']
-
-# run html task by default
-gulp.task 'default', ['build']

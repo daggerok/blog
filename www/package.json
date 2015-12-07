@@ -31,13 +31,13 @@
     "prebuild": "npm install",
     "build": "gulp",
 
-    "predeploy": "npm run clean",
+    "predeploy": "npm install && npm run clean",
     "deploy": "npm run build",
 
     "prestart": "npm install",
     "start": "gulp watch",
 
-    "preserve": "npm install",
+    "preserve": "npm run deploy",
     "serve": "gulp serve"
   },
   "repository": {

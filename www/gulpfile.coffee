@@ -65,8 +65,8 @@ gulp.task 'clean-gen-test', ->
 
 # clean generated js
 gulp.task 'clean-gen', [
-  'clean-gen-js-src'
-  'clean-gen-js-test'
+  'clean-gen-src'
+  'clean-gen-test'
 ]
 
 compile = (srcDir) ->
@@ -88,7 +88,7 @@ gulp.task 'coffee', [
 ]
 
 # combine and min js files into build dir
-gulp.task 'js', ->
+gulp.task 'js', ['coffee-src'], ->
   gulp.src javascripts
     #.pipe sourcemaps.init()
     .pipe concat mainJs
@@ -171,7 +171,7 @@ gulp.task 'dev', [
   'dev-js'
 ]
 
-gulp.task 'test-js', (done) ->
+gulp.task 'test-js', ['coffee'], (done) ->
   new Server(
       configFile: karmaJsConf
       singleRun: true,

@@ -25,11 +25,15 @@ module.exports = (config) ->
 
     # list of files / patterns to load in the browser
     files: [
+      # vendors
       'node_modules/angular/angular.js'
       'node_modules/angular-route/angular-route.js'
       'node_modules/angular-translate/dist/angular-translate.js'
+      'node_modules/angular-mocks/angular-mocks.js'
+      # app
       'src/**/*.coffee'
-      'test/unit/**/*.test.coffee'
+      # test
+      'test/**/*.test.coffee'
     ]
 
     # list of files to exclude
@@ -95,11 +99,11 @@ module.exports = (config) ->
     # start these browsers
     # available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: [
-      'Internet Explorer'
       'PhantomJS'
-      'Chrome'
-      'Safari'
+      #'Internet Explorer'
       #'Firefox'
+      #'Chrome'
+      #'Safari'
       #'Opera'
     ]
 

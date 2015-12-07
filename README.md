@@ -63,35 +63,30 @@
 * How to build
     - gradle:
 
-        $ gradle www # or gradle www
+        $ gradle www
     - shell/batch scripts:
 
         $ cd www/ && ./build.sh # nix systems
         $ cd www && build.bat @rem windows systems
     - npm:
 
-        $ npm run gulp
+        $ npm run deploy
 * How to test? Test will handle during the gradle build, build.sh, build.bat or:
 
-    $ node_modules/.bin/karma start test/karma.conf.js # or:
-    $ npm test # or $ npm run test # for unix-like OS and Git-Bash shell
-    $ node_modules/.bin/karma.cmd start test/karma.conf.js @rem or:
-    $ npm run win-test @rem for windows-like OS command-line interpreter
+    $ npm test
 * What gulp does?
     - combine, minify scripts, ctyles, images and html files
 
-        $ npm run gulp scripts
-        $ npm run gulp styles
-        $ $ npm run gulp images
-        $ npm run gulp htmls
-        $ npm run gulp deploy # does all previous tasks
+        $ npm run gulp js
+        $ npm run gulp css
+        $ npm run gulp img
+        $ npm run gulp fonts
+        $ npm run gulp html
+        # + dev mode (see dulpfile.coffee)
     - watching sources and process compile errors with plumber, doing it in developer mode with livereload feature (without any browsers plugins or other middleware): http://localhost:8080
 
-        $ npm run watch
+        $ npm start
     - running build on http-serve:
 
-        $ npm start # or $ npm run start
-### Who do I talk to? :) ###
-
-daggerok@gmail.com
+        $ npm serve
 

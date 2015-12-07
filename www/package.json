@@ -13,7 +13,7 @@
     "pretest": "npm install",
     "test": "gulp test",
 
-    "precli-test-js": "npm install",
+    "pre-cli-test-js": "npm install",
     "cli-test-js": "node_modules/.bin/karma start test/karma.conf.js",
 
     "precli-test-coffee": "npm install",

@@ -5,33 +5,40 @@
   "scripts": {
     "gulp": "gulp --require coffee-script/register",
     "clean": "gulp clean",
-    "coffee": "npm run gulp coffee",
+    "coffee": "gulp coffee",
+    "clean-gen": "gulp clean-gen",
 
     "postinstall": "npm run coffee",
 
     "pretest": "npm install",
-    "test": "npm run gulp test",
+    "test": "gulp test",
 
-    "precli-test": "npm install",
-    "cli-test": "node_modules/.bin/karma start test/karma.conf.js",
+    "precli-test-js": "npm install",
+    "cli-test-js": "node_modules/.bin/karma start test/karma.conf.js",
 
-    "precoffee-test": "npm install",
-    "coffee-test": "node_modules/.bin/karma start test/karma-coffee.conf.coffee",
+    "precli-test-coffee": "npm install",
+    "cli-test-coffee": "node_modules/.bin/karma start test/karma-coffee.conf.coffee",
 
-    "precli-win-test": "npm install",
-    "cli-win-test": "node_modules/.bin/karma.cmd start test/karma.conf.js",
+    "precli-win-test-js": "npm install",
+    "cli-win-test-js": "node_modules/.bin/karma.cmd start test/karma.conf.js",
+
+    "precli-win-test-coffee": "npm install",
+    "cli-win-test-coffee": "node_modules/.bin/karma.cmd start test/karma-coffee.conf.coffe",
+
+    "cli-test": "npm run cli-test-coffee && npm run cli-test-js",
+    "cli-win-test": "npm run cli-win-test-coffee && npm run cli-win-test-js",
 
     "prebuild": "npm install",
-    "build": "npm run gulp",
+    "build": "gulp",
 
     "predeploy": "npm run clean",
     "deploy": "npm run build",
 
     "prestart": "npm install",
-    "start": "npm run gulp watch",
+    "start": "gulp watch",
 
     "preserve": "npm install",
-    "serve": "npm run gulp server"
+    "serve": "gulp serve"
   },
   "repository": {
     "type": "git",
@@ -49,21 +56,28 @@
     "jquery": "^2.1.4"
   },
   "devDependencies": {
-    "coffee-script": "^1.10.0",
-    "csswring": "^4.0.0",
     "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.1.0",
+    "coffee-script": "^1.10.0",
     "gulp-coffee": "^2.3.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-connect": "^2.2.0",
-    "gulp-html-replace": "^1.5.4",
-    "gulp-imagemin": "^2.4.0",
-    "gulp-minify-html": "^1.0.4",
-    "gulp-plumber": "^1.0.1",
-    "gulp-postcss": "^6.0.1",
+
     "gulp-rimraf": "^0.2.0",
-    "gulp-serve": "^1.2.0",
+
+    "gulp-plumber": "^1.0.1",
+
+    "gulp-concat": "^2.6.0",
     "gulp-uglify": "^1.4.2",
+
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-minify-css": "^1.2.2",
+
+    "gulp-imagemin": "^2.4.0",
+
+    "gulp-html-replace": "^1.5.4",
+    "gulp-minify-html": "^1.0.4",
+
+    "gulp-connect": "^2.2.0",
+    "gulp-serve": "^1.2.0",
+
     "angular-mocks": "^1.4.8",
     "karma": "^0.13.15",
     "karma-chrome-launcher": "^0.2.2",

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-RU" data-ng-app="blog">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico"/>
+  <title>{{ "i18nHeadName" | translate }}</title>
+  <!-- build:css -->
+  <!-- vendors -->
+  <link rel="stylesheet" href="font-awesome.css">
+  <link rel="stylesheet" href="bootstrap.css">
+  <!-- main -->
+  <link rel="stylesheet" href="blog.css">
+  <!-- endbuild -->
+</head>
+<body>
+  <blog-nav></blog-nav>
+  <blog-main></blog-main>
+  <blog-footer></blog-footer>
+  <!-- build:js -->
+  <!-- vendors -->
+  <script src="jquery.js"></script>
+  <script src="angular.js"></script>
+  <script src="angular-route.js"></script>
+  <script src="angular-translate.js"></script>
+  <!-- app -->
+  <script src="scripts/controllers/blogController.js"></script>
+  <script src="scripts/controllers.js"></script>
+  <script src="scripts/directives/blogNav.js"></script>
+  <script src="scripts/directives/blogMain.js"></script>
+  <script src="scripts/directives/blogFooter.js"></script>
+  <script src="scripts/directives.js"></script>
+  <script src="scripts/i18n/config.js"></script>
+  <script src="scripts/i18n/controller.js"></script>
+  <script src="scripts/routes/routes.js"></script>
+  <script src="scripts/i18n.js"></script>
+  <!-- main -->
+  <script src="blog.js"></script>
+  <!-- endbuild -->
+</body>
+</html>

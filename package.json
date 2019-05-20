@@ -1,0 +1,78 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Blog",
+  "scripts": {
+    "pregulp": "npm install",
+    "gulp": "gulp --require coffee-script/register",
+    "coffee": "npm run gulp coffee",
+    "test": "npm run gulp test",
+    "clean": "npm run gulp clean",
+    "build": "npm run gulp",
+    "sourcesmap": "npm run gulp sourcesmap",
+    "clean-gen": "npm run gulp clean-gen",
+    "clean-all": "npm run clean & npm run clean-gen",
+    "start": "npm run gulp watch",
+    "serve": "npm run gulp serve",
+    "preserve": "npm run build",
+    "___comment": {
+      "cli-test": "npm run cli-test-coffee && npm run cli-test-js",
+      "cli-test-coffee": "node_modules/.bin/karma start test/karma-coffee.conf.coffee",
+      "cli-test-js": "node_modules/.bin/karma start test/karma.conf.js",
+      "precli-test": "npm run coffee",
+      "cli-win-test": "npm run cli-win-test-coffee && npm run cli-win-test-js",
+      "cli-win-test-coffee": "node_modules/.bin/karma.cmd start test/karma-coffee.conf.coffe",
+      "cli-win-test-js": "node_modules/.bin/karma.cmd start test/karma.conf.js",
+      "precli-win-test": "npm run coffee"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daggerok/blog.git"
+  },
+  "author": "Maksim Kostromin",
+  "license": "ISC",
+  "homepage": "https://github.com/daggerok/blog#readme",
+  "dependencies": {
+    "angular": "1.4.8",
+    "angular-route": "1.4.7",
+    "angular-translate": "2.8.1",
+    "bootstrap": "3.3.5",
+    "font-awesome": "4.4.0",
+    "jquery": "3.4.0"
+  },
+  "devDependencies": {
+    "gulp": "3.9.0",
+    "coffee-script": "1.10.0",
+    "gulp-coffee": "2.3.1",
+    "gulp-rimraf": "0.2.0",
+    "colors": "1.1.2",
+    "gulp-concat": "2.6.0",
+    "gulp-uglify": "1.4.2",
+    "gulp-autoprefixer": "3.1.0",
+    "gulp-minify-css": "1.2.2",
+    "gulp-imagemin": "2.4.0",
+    "gulp-html-replace": "1.5.4",
+    "gulp-minify-html": "1.0.4",
+    "gulp-connect": "2.2.0",
+    "gulp-serve": "1.2.0",
+    "angular-mocks": "1.4.8",
+    "karma": "0.13.15",
+    "karma-chrome-launcher": "0.2.2",
+    "karma-firefox-launcher": "0.1.7",
+    "karma-ie-launcher": "0.2.0",
+    "karma-opera-launcher": "0.3.0",
+    "karma-safari-launcher": "0.1.1",
+    "karma-phantomjs-launcher": "0.2.1",
+    "karma-coffee-preprocessor": "0.3.0",
+    "karma-junit-reporter": "0.3.8",
+    "phantomjs": "1.9.19",
+    "jasmine-core": "2.3.4",
+    "jasmine": "2.4.1",
+    "karma-jasmine": "0.3.6"
+  },
+  "engines": {
+    "node": "5.x.x",
+    "npm": "3.x.x"
+  }
+}

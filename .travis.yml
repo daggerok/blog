@@ -9,7 +9,7 @@ git:
   quiet: true
   depth: false
 language: java
-jdk: openjdk11
+jdk: openjdk8
 node_js: lts/*
 #node_js: 5.1
 python: 3.7

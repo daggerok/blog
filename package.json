@@ -39,7 +39,7 @@
     "angular-translate": "2.8.1",
     "bootstrap": "3.4.1",
     "font-awesome": "4.4.0",
-    "jquery": "3.4.0"
+    "jquery": "3.5.0"
   },
   "devDependencies": {
     "gulp": "3.9.0",

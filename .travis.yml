@@ -59,5 +59,3 @@ before_install:
 script:
   - ./gradlew www -Pnode=dev
   - ./gradlew build
-notifications:
-  email: false

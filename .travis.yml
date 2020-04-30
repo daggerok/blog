@@ -32,8 +32,6 @@ addons:
       - libxml2-utils
 install: true
 before_install:
-  #- export CHROME_BIN=/usr/bin/google-chrome
-  - export DISPLAY=:99.0
   - |
     if [ ! -f ${HOME}/.local/daggerok/bash-functions/master/main.bash ] ; then
       mkdir -p ${HOME}/.local/daggerok/bash-functions/master ;
@@ -41,21 +39,19 @@ before_install:
     fi
   - source ${HOME}/.local/daggerok/bash-functions/master/main.bash
   - stop_any 80 8001 8002 8080 5432
+  #
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
 before_script:
   - export PATH=/tmp:$PATH
   - export APP_UPLOAD_PATH="/tmp/file-storage"
   - mkdir -p ${APP_UPLOAD_PATH}
+script:
+  - ./gradlew www -Pnode=dev
+  - ./gradlew build
 cache:
   directories:
     - ~/.n*
     - ~/.gradle
     - ./node_modules
     - ~/.local/daggerok
-install:
-  - true
-before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-script:
-  - ./gradlew www -Pnode=dev
-  - ./gradlew build

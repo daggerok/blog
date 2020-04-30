@@ -21,7 +21,7 @@ install latests java and npm
 clone repo
 
 ``` shell
-git clone ... && cd blog/
+git clone --depth=1 --no-single-branch --single-branch https://github.com/daggerok/blog app && cd $_
 ```
 
 only one command (all in one)

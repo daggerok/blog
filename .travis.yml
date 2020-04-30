@@ -12,7 +12,7 @@ language: java
 jdk: openjdk8
 node_js: lts/*
 #node_js: 5.1
-python: 3.7
+python: 3.8
 service:
   - xvfb
   - docker
@@ -26,13 +26,10 @@ addons:
       - curl
       - sudo
       - lsof
-      #- bash
+      - httpie
       - docker-ce
       - python3-pip
       - libxml2-utils
-      #- libappindicator1
-      #- fonts-liberation
-      #- google-chrome-stable
 install: true
 before_install:
   #- export CHROME_BIN=/usr/bin/google-chrome
@@ -44,10 +41,6 @@ before_install:
     fi
     source ${HOME}/.local/daggerok/bash-functions/master/main.bash ;
   - stop_any 80 8001 8002 8080 5432
-  #
-  - export PATH=$HOME/.local/bin:$PATH
-  - pip3 install --user --upgrade pip setuptools
-  - pip install --user --upgrade docker-compose httpie
 before_script:
   - export PATH=/tmp:$PATH
   - export APP_UPLOAD_PATH="/tmp/file-storage"

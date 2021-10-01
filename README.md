@@ -1,4 +1,4 @@
-# Java back-end + JavaScript front-end  [![build](https://api.travis-ci.org/daggerok/blog.svg?branch=master)](https://travis-ci.org/daggerok/blog) #
+# Java back-end + JavaScript front-end [![CI](https://github.com/daggerok/blog/actions/workflows/ci.yaml/badge.svg)](https://github.com/daggerok/blog/actions/workflows/ci.yaml)
 
 ### What is this repository for? ###
 
@@ -16,7 +16,7 @@
 
 ### How do I get set up? ###
 
-install latests java and npm
+install latest java and npm
 
 clone repo
 
@@ -27,7 +27,7 @@ git clone --depth=1 --no-single-branch --single-branch https://github.com/dagger
 only one command (all in one)
 
 ``` shell
-./gradlew build run # or gradlew.bat build run
+./gradlew build bootRun # or gradlew.bat build bootRun
 ```
 
 or without gradle wrapper (make jar not war:))
